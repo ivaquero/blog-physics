@@ -477,7 +477,21 @@ f(k, n, p) = C_k^n p^kq^{n-k}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_12_0.png" src="../_images/02-univariate-distributions_12_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">MethodError</span>: pdf(::Binomial{Float64}, ::UnitRange{Int64}) is ambiguous. Candidates:
+  <span class="n">pdf</span><span class="p">(</span><span class="n">d</span><span class="p">::</span><span class="n">Distribution</span><span class="p">{</span><span class="n">ArrayLikeVariate</span><span class="p">{</span><span class="n">N</span><span class="p">}},</span> <span class="n">x</span><span class="p">::</span><span class="n">AbstractArray</span><span class="p">{</span><span class="o">&lt;</span><span class="p">:</span><span class="n">Real</span><span class="p">,</span> <span class="n">M</span><span class="p">})</span> <span class="n">where</span> <span class="p">{</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">}</span> <span class="ow">in</span> <span class="n">Distributions</span> <span class="n">at</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">integzz</span><span class="o">/.</span><span class="n">julia</span><span class="o">/</span><span class="n">packages</span><span class="o">/</span><span class="n">Distributions</span><span class="o">/</span><span class="n">K939H</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">common</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">249</span>
+  <span class="n">pdf</span><span class="p">(</span><span class="n">d</span><span class="p">::</span><span class="n">UnivariateDistribution</span><span class="p">,</span> <span class="n">X</span><span class="p">::</span><span class="n">AbstractArray</span><span class="p">)</span> <span class="ow">in</span> <span class="n">Distributions</span> <span class="n">at</span> <span class="n">deprecated</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">70</span>
+<span class="n">Possible</span> <span class="n">fix</span><span class="p">,</span> <span class="n">define</span>
+  <span class="n">pdf</span><span class="p">(::</span><span class="n">UnivariateDistribution</span><span class="p">,</span> <span class="p">::</span><span class="n">AbstractArray</span><span class="p">{</span><span class="n">T</span><span class="p">,</span> <span class="n">M</span><span class="p">}</span> <span class="n">where</span> <span class="n">T</span><span class="o">&lt;</span><span class="p">:</span><span class="n">Real</span><span class="p">)</span> <span class="n">where</span> <span class="n">M</span>
+
+<span class="ne">Stacktrace</span>:
+ <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
+   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span><span class="mi">7</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nb">eval</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+</pre></div>
+</div>
 </div>
 </div>
 <p>We could interpret the plot with straightforward observation:</p>
@@ -563,9 +577,6 @@ If a trader&#39;s winning rate is 55.0%, the probability of winning between 14 a
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_19_0.png" src="../_images/02-univariate-distributions_19_0.png" />
-</div>
 </div>
 <div class="section" id="binomial-random-variable-generator">
 <h3>Binomial Random Variable Generator<a class="headerlink" href="#binomial-random-variable-generator" title="Permalink to this headline">¶</a></h3>
@@ -600,9 +611,6 @@ If a trader&#39;s winning rate is 55.0%, the probability of winning between 14 a
 <span class="n">fig</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_22_0.png" src="../_images/02-univariate-distributions_22_0.png" />
 </div>
 </div>
 <p>When <span class="math notranslate nohighlight">\(n → ∞\)</span> and <span class="math notranslate nohighlight">\(p → 0\)</span>，a binomial distribution approaches a <strong>Poisson distribution</strong> asymptotically, i.e. when <span class="math notranslate nohighlight">\(n\)</span> is large and <span class="math notranslate nohighlight">\(p\)</span> is small, we can use Poisson to approximate Binomial.</p>
@@ -647,11 +655,6 @@ P(x=2)=\frac{λ^ke^{-λ}}{k!}=\frac{1.2^2e^{-1.2}}{2!}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of having 2 wiped-out shock(s) in a span of 5 years is 21.69%.
-</pre></div>
-</div>
-</div>
 </div>
 <p>You probably have notices that Binomial and Poisson provide the same answer.</p>
 <p>Similarly what’s the probability of having more than <span class="math notranslate nohighlight">\(k\)</span> times wiped-out?</p>
@@ -663,11 +666,6 @@ P(x=2)=\frac{λ^ke^{-λ}}{k!}=\frac{1.2^2e^{-1.2}}{2!}
 <span class="n">print</span><span class="p">(</span>
     <span class="s">&quot;The probability of having more than </span><span class="si">$k</span><span class="s"> BS shock in 5 years is </span><span class="si">$</span><span class="p">(</span><span class="n">sf_poisson</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of having more than 2 BS shock in 5 years is 12.05%.
 </pre></div>
 </div>
 </div>
@@ -688,9 +686,6 @@ P(x=2)=\frac{λ^ke^{-λ}}{k!}=\frac{1.2^2e^{-1.2}}{2!}
 <span class="n">fig</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_29_0.png" src="../_images/02-univariate-distributions_29_0.png" />
 </div>
 </div>
 </div>
@@ -719,11 +714,6 @@ f(k)=p(1-p)^k
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of observing exact 5 times of failures trials before first success is 5.04%.
-</pre></div>
-</div>
-</div>
 </div>
 <p>Again, CDF could answer the a question: <em>What’s the probability of observing <span class="math notranslate nohighlight">\(k\)</span> or less than <span class="math notranslate nohighlight">\(k\)</span> times of failure before the first success?</em></p>
 <div class="cell docutils container">
@@ -733,11 +723,6 @@ f(k)=p(1-p)^k
 <span class="n">print</span><span class="p">(</span>
     <span class="s">&quot;The probability of observing </span><span class="si">$k</span><span class="s"> or fewer than </span><span class="si">$k</span><span class="s"> times of failure before a first success is </span><span class="si">$</span><span class="p">(</span><span class="n">cdf_geom</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">.&quot;</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of observing 5 or fewer than 5 times of failure before a first success is 91.76.
 </pre></div>
 </div>
 </div>
@@ -755,9 +740,6 @@ f(k)=p(1-p)^k
 <span class="n">fig</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_35_0.png" src="../_images/02-univariate-distributions_35_0.png" />
 </div>
 </div>
 </div>
@@ -791,11 +773,6 @@ f(x) =\frac{{K\choose k} {N-K \choose n-k}}{{N\choose n}}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of getting 2 drug stashers by taking 5 persons away is 20.73%.
-</pre></div>
-</div>
-</div>
 </div>
 <p>A histogram would provide some intuitions of geometric distribution.</p>
 <p>It can be interpreted as: if 100 persons in the building, 20 are drug stasher, take 5 out of 100. The probability of getting from 1 to 5 drug stashers, is shown in the chart. As we can see it is nearly impossible to get 4 or 5 drugs stasher. But getting one is the most possible outcome</p>
@@ -812,9 +789,6 @@ f(x) =\frac{{K\choose k} {N-K \choose n-k}}{{N\choose n}}
 <span class="n">fig</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_40_0.png" src="../_images/02-univariate-distributions_40_0.png" />
 </div>
 </div>
 </div>
@@ -837,9 +811,6 @@ f(x) =\frac{{K\choose k} {N-K \choose n-k}}{{N\choose n}}
 <span class="n">fig</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_43_0.png" src="../_images/02-univariate-distributions_43_0.png" />
 </div>
 </div>
 <div class="section" id="discrete-probability-mass-function">
@@ -876,9 +847,6 @@ f(x)=\frac{1}{b-a}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_48_0.png" src="../_images/02-univariate-distributions_48_0.png" />
-</div>
 </div>
 <div class="section" id="cdf-and-pdf-of-continuous-uniform-distribution">
 <h3>CDF and PDF of Continuous Uniform Distribution<a class="headerlink" href="#cdf-and-pdf-of-continuous-uniform-distribution" title="Permalink to this headline">¶</a></h3>
@@ -896,11 +864,6 @@ f(x)=\frac{1}{b-a}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plot_prob (generic function with 1 method)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -911,9 +874,6 @@ f(x)=\frac{1}{b-a}
 <span class="n">plot_prob</span><span class="p">(</span><span class="n">unif_x</span><span class="p">,</span> <span class="n">unif_pdf</span><span class="p">,</span> <span class="n">unif_cdf</span><span class="p">,</span> <span class="s">&quot;Continous Uniform&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_51_0.png" src="../_images/02-univariate-distributions_51_0.png" />
 </div>
 </div>
 </div>
@@ -938,9 +898,6 @@ f(x)=\frac{1}{σ \sqrt{2 π}} e^{-\frac{1}{2}\left(\frac{x-μ}{σ}\right)^{2}}
 <span class="n">plot_prob</span><span class="p">(</span><span class="n">norm_x</span><span class="p">,</span> <span class="n">norm_pdf</span><span class="p">,</span> <span class="n">norm_cdf</span><span class="p">,</span> <span class="s">&quot;Normal&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_54_0.png" src="../_images/02-univariate-distributions_54_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -971,9 +928,6 @@ f(x)=\frac{1}{σ \sqrt{2 π}} e^{-\frac{1}{2}\left(\frac{x-μ}{σ}\right)^{2}}
 <span class="n">fig</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_55_0.png" src="../_images/02-univariate-distributions_55_0.png" />
 </div>
 </div>
 <div class="section" id="inverse-normal-cdf">
@@ -1015,9 +969,6 @@ f(x)=\frac{1}{σ \sqrt{2 π}} e^{-\frac{1}{2}\left(\frac{x-μ}{σ}\right)^{2}}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_57_0.png" src="../_images/02-univariate-distributions_57_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="normal-random-variable-generator">
@@ -1033,9 +984,6 @@ f(x)=\frac{1}{σ \sqrt{2 π}} e^{-\frac{1}{2}\left(\frac{x-μ}{σ}\right)^{2}}
 <span class="n">fig</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_59_0.png" src="../_images/02-univariate-distributions_59_0.png" />
 </div>
 </div>
 </div>
@@ -1084,9 +1032,6 @@ f(x)=\frac{1}{σ \sqrt{2 π}} e^{-\frac{1}{2}\left(\frac{x-μ}{σ}\right)^{2}}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_62_0.png" src="../_images/02-univariate-distributions_62_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="shifted-distribution">
@@ -1107,9 +1052,6 @@ f(x)=\frac{1}{σ \sqrt{2 π}} e^{-\frac{1}{2}\left(\frac{x-μ}{σ}\right)^{2}}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_64_0.png" src="../_images/02-univariate-distributions_64_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="random-numbers-with-a-normal-distribution">
@@ -1129,9 +1071,6 @@ f(x)=\frac{1}{σ \sqrt{2 π}} e^{-\frac{1}{2}\left(\frac{x-μ}{σ}\right)^{2}}
 <span class="n">fig</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_66_0.png" src="../_images/02-univariate-distributions_66_0.png" />
 </div>
 </div>
 </div>
@@ -1173,9 +1112,6 @@ f(x, a, b)=\frac{Γ(a+b) x^{a-1}(1-x)^{b-1}}{Γ(a) Γ(b)}
 <span class="n">fig</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_70_0.png" src="../_images/02-univariate-distributions_70_0.png" />
 </div>
 </div>
 <p>Beta distribution is mostly useful as <strong>prior distribution</strong> in Bayesian estimation, because it is bounded in <span class="math notranslate nohighlight">\([0, 1]\)</span>, that is perfect for modeling the <em>probability distribution of probabilities</em>. In Bayesian estimation, we only care about the proportion between prior and posterior, by adjusting <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> we can use Beta distribution to express any kinds of prior beliefs including normal, uniform, exponential distribution and etc.</p>
