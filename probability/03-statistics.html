@@ -1,0 +1,841 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Statistics &#8212; A Starter of Physics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://ivaquero.github.io/excss-physics/probability/03-statistics.html" />
+    <link rel="shortcut icon" href="../_static/logo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Multivariate Distributions" href="04-multivariate-distributions.html" />
+    <link rel="prev" title="Univariate Distributions" href="02-univariate-distributions.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">A Starter of Physics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   A Starter of Physics
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Probablity
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-counting.html">
+   Counting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-univariate-distributions.html">
+   Univariate Distributions
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-multivariate-distributions.html">
+   Multivariate Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-transformations.html">
+   Transformations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-conditional-probability.html">
+   Conditional Probability
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../basics/p-correlation.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../basics/p-distribution.html">
+   Distribution
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/probability/03-statistics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ivaquero/excss-physics/master?urlpath=lab/tree/probability/03-statistics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Statistics
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#histogram">
+   Histogram
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measures-of-location">
+   Measures of Location
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measures-of-variability">
+   Measures of Variability
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measures-of-distribution-shape">
+   Measures of Distribution Shape
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#chebyshev-s-theorem">
+     Chebyshev’s Theorem
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measures-of-association">
+   Measures of Association
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="statistics">
+<h1>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">Distributions</span><span class="p">,</span> <span class="n">StatsBase</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">Random</span><span class="p">,</span> <span class="n">Statistics</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">CairoMakie</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before making any inferences from a dataset, it is crucial that we understand the features of datasets by ‘describing’ them. We can either describe them by graphing or calculating numerical summarisations.</p>
+<p>We will refresh most common descriptive statistics in this chapter, if you are working with data on a daily basis, no concepts here should sound strange to you.</p>
+<p>Furthermore, we will not engage in complex programming techniques, such as OOP and sophisticated data structures. All the programmes should be self-explanatory to most of audiences.</p>
+</div>
+<div class="section" id="histogram">
+<h1>Histogram<a class="headerlink" href="#histogram" title="Permalink to this headline">¶</a></h1>
+<p>Strictly speaking, frequency distribution and histogram are different descriptive tools, though they are delivering the largely identical information. Frequency distribution are usually presented in a table, for instance, rolling a dice <span class="math notranslate nohighlight">\(1000\)</span> times might give a us frequency distribution table as following:</p>
+<table style="text-align:center; width:30%; text-align:center;font-size: 150% ">
+  <caption style = "font-size: 110%">Rolling A Dice 1000 Times</caption>
+  <tr>
+    <th>Sides</th>
+    <th>Frequency</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>172</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>158</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>170</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>158</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>187</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>155</td>
+  </tr>
+</table><p>Or we can draw a frequency histogram, which simply converts the information of table into a graph.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">rollings</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Frequency Histogram of 1000 Times of Rolling a Dice&quot;</span><span class="p">);</span>
+
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rollings</span><span class="p">;</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">strokewidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">strokecolor</span> <span class="o">=</span> <span class="ss">:black</span><span class="p">);</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03-statistics_8_0.png" src="../_images/03-statistics_8_0.png" />
+</div>
+</div>
+<p>Next we try generating an array from a standard normal distribution <span class="math notranslate nohighlight">\(x∼ N(0, 1)\)</span>, then plot the histogram.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span>
+
+<span class="n">hist</span> <span class="o">=</span> <span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">;</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">normalization</span> <span class="o">=</span> <span class="ss">:pdf</span><span class="p">,</span> <span class="n">strokewidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">strokecolor</span> <span class="o">=</span> <span class="ss">:black</span><span class="p">);</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03-statistics_10_0.png" src="../_images/03-statistics_10_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">h_counts</span><span class="p">(</span><span class="n">pic</span><span class="p">)</span>
+    <span class="n">vals</span> <span class="o">=</span> <span class="n">pic</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">to_value</span><span class="p">;</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">hcat</span><span class="p">(</span><span class="n">vals</span><span class="o">...</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">transpose</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">m</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>h_counts (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first charts below shows the same information as histogram, but with line plots rather than bars. But the second one is called <em>Empirical cumulative distribution</em>*, it is empirical because it is not theoretically plotted, i.e. using a <strong>cumulative distribution function (CDF)</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">hst_counts</span> <span class="o">=</span> <span class="n">h_counts</span><span class="p">(</span><span class="n">hist</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span>
+<span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="mi">50</span><span class="p">,</span> <span class="n">hst_counts</span><span class="p">);</span>
+<span class="n">xlims!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">));</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span>
+<span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="mi">50</span><span class="p">,</span> <span class="n">cumsum</span><span class="p">(</span><span class="n">hst_counts</span><span class="p">));</span>
+<span class="n">xlims!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">));</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03-statistics_13_0.png" src="../_images/03-statistics_13_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="measures-of-location">
+<h1>Measures of Location<a class="headerlink" href="#measures-of-location" title="Permalink to this headline">¶</a></h1>
+<p>The most important <strong>mean</strong> we need is <strong>arithmetic mean</strong>, which is prevalent in all kinds of statistical techniques.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+μ = \frac{1}{N}∑_{i=1}^Nx_i\\
+\bar{x} = \frac{1}{n}∑_{i=1}^nx_i
+\end{split}\]</div>
+<p>The former one is <em>population mean</em>, the latter is <em>sample mean</em>. The formulae appear the same, but with different indication. <span class="math notranslate nohighlight">\(N\)</span> is the population size, imagine the number of all human beings on earth, on the other hand, <span class="math notranslate nohighlight">\(n\)</span> is sample size, for instance a sample of <span class="math notranslate nohighlight">\(1000\)</span> persons from UK.</p>
+<p>And one tricky mean commonly used in finance is <strong>geometric mean</strong>, not so intuitive at first sight.
+$<span class="math notranslate nohighlight">\(
+g = \bigg(∏_{i=1}^nx_i\bigg)^{1/n}
+\)</span>$
+If you can’t make sense out of it, accept a fact that geometric mean is commonly used when calculating <em>compound growth rates</em>, such as portfolio return. For instance, a portfolio manager has annual return recorded as below</p>
+<table style="text-align:center; width:40%; text-align:center;font-size: 150% ">
+  <caption style = "font-size: 110%">Portfolio Return</caption>
+  <tr>
+    <th>Year</th>
+    <th>Return</th>
+  </tr>
+  <tr>
+    <td>2015</td>
+    <td>36%</td>
+  </tr>
+  <tr>
+    <td>2016</td>
+    <td>23%</td>
+  </tr>
+  <tr>
+    <td>2017</td>
+    <td>-48%</td>
+  </tr>
+  <tr>
+    <td>2018</td>
+    <td>-30%</td>
+  </tr>
+  <tr>
+    <td>2019</td>
+    <td>15%</td>
+  </tr>
+  <tr>
+    <td>2020</td>
+    <td>31%</td>
+  </tr>
+  <tr>
+    <td>Arithmetic Mean</td>
+    <td>4.5%</td>
+  </tr>
+  <tr>
+    <td>Geometric Mean</td>
+    <td>-1.4%</td>
+  </tr>
+</table><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Float64</span><span class="p">;</span> <span class="n">d</span><span class="o">::</span><span class="kt">Int64</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">round</span><span class="p">(</span><span class="mi">100</span><span class="n">x</span><span class="p">;</span> <span class="n">digits</span><span class="o">=</span><span class="n">d</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The arithmetic mean of return is <span class="math notranslate nohighlight">\(4.45\%\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">portfolio_return</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.36</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.48</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.31</span><span class="p">]</span>
+<span class="n">portfolio_return</span> <span class="o">|&gt;</span> <span class="n">mean</span> <span class="o">|&gt;</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">percent</span><span class="p">(</span><span class="n">x</span><span class="p">;</span> <span class="n">d</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>However the geometric mean of return is <span class="math notranslate nohighlight">\(-1.42\%\)</span>. Geometric mean is more accurate measurement when considering the compound effect, i.e. the data are related to each other by a growth rate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(((</span><span class="n">portfolio_return</span> <span class="o">.+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">geomean</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">percent</span><span class="p">(</span><span class="n">x</span><span class="p">;</span> <span class="n">d</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.428
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="measures-of-variability">
+<h1>Measures of Variability<a class="headerlink" href="#measures-of-variability" title="Permalink to this headline">¶</a></h1>
+<p>The first measurement of variability is the <strong>range</strong> measuring distance from lowest to highest. We’ll generate an array of standard normal distribution for demonstration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+<span class="n">rangeLS</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="o">...</span><span class="p">)</span> <span class="o">-</span> <span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="o">...</span><span class="p">);</span>
+<span class="n">rangeLS</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.729430988393148
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Percentile</strong> is also a common statistic concept, which could be best explained by an example. For instance, the GRE test result shows percentile besides your absolute score, say you have a percentile of <span class="math notranslate nohighlight">\(96\%\)</span>, it means your score is higher than <span class="math notranslate nohighlight">\(96\%\)</span> of candidates. The special percentile of <span class="math notranslate nohighlight">\(75\%\)</span> and <span class="math notranslate nohighlight">\(25\%\)</span> are sometimes called the <em>third quartile</em> and <em>first quartile</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">q75</span><span class="p">,</span> <span class="n">q25</span> <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">.75</span><span class="p">,</span> <span class="mf">.25</span><span class="p">]);</span>
+<span class="n">q75</span> <span class="o">-</span> <span class="n">q25</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1594399713200514
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before moving any further, we must clarify two statistical concepts: <strong>population</strong> and <strong>sample</strong>. For example, we want to know the variance of all human adults height, therefore we ought to measure all adults (population) on earth in order to calculate the variance, however the mission is impossible, instead we measure a smaller group of adults (sample) to make inferential statements about population.</p>
+<p>Population and sample variance differ in degree of freedom, where <span class="math notranslate nohighlight">\(N\)</span> is the population size, whereas <span class="math notranslate nohighlight">\(n\)</span> is the sample size, <span class="math notranslate nohighlight">\(μ\)</span> is the population mean and <span class="math notranslate nohighlight">\(\bar{x}\)</span> is the sample mean. The formulae of variances are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+σ^2 = \frac{∑(x_i - μ)^2}{N}\\
+s^2 = \frac{∑(x_i - \bar{x})^2}{n-1}
+\end{split}\]</div>
+<p>The latter is an unbiased estimator of population variance, which is also the <em>sample variance</em>.</p>
+<p>To illustrate the idea, let’s pretend there are only <span class="math notranslate nohighlight">\(N = 1000\)</span> people on earth, we can generate an array to represent the population height, only for demonstrative purpose. We generate a population by <span class="math notranslate nohighlight">\(X∼ N(170, 10)\)</span>, then calculate the population variance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">d_normal</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="mi">170</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+
+<span class="n">population_height</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_normal</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="n">population_height</span> <span class="o">|&gt;</span> <span class="n">mean</span> <span class="o">|&gt;</span> <span class="n">println</span>
+<span class="n">population_height</span> <span class="o">|&gt;</span> <span class="n">var</span>  <span class="o">|&gt;</span> <span class="n">println</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>170.63417586073794
+94.3196994455534
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now suppose we know nothing about the population, but we can get a sample of 100 persons.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">sample_height</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">population_height</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+
+<span class="n">sample_height</span> <span class="o">|&gt;</span> <span class="n">mean</span> <span class="o">|&gt;</span> <span class="n">println</span>
+<span class="n">sample_height</span> <span class="o">|&gt;</span> <span class="n">var</span>  <span class="o">|&gt;</span> <span class="n">println</span>
+<span class="n">sample_height</span> <span class="o">|&gt;</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">varm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mean</span><span class="p">(</span><span class="n">sample_height</span><span class="p">))</span> <span class="o">|&gt;</span> <span class="n">println</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>169.76337820069224
+79.83496754314946
+79.83496754314946
+</pre></div>
+</div>
+</div>
+</div>
+<p>Theoretically, we can have tremendous amount of samples, say <span class="math notranslate nohighlight">\(10000\)</span> samples. Yes, I mean <span class="math notranslate nohighlight">\(10000\)</span> samples, not the sample size, but this is just a thought experiment, will never be achieved in real world. Again, pure demonstrative purpose.</p>
+<p>What we are doing next: generate <span class="math notranslate nohighlight">\(10000\)</span> samples, calculate the sample variances, plot histogram. The vertical line is the mean of sampling distribution of variance estimates. We set standard deviation of <span class="math notranslate nohighlight">\(σ = 10\)</span>, the theoretical variance <span class="math notranslate nohighlight">\(σ^2=100\)</span>, therefore we see the point estimator is doing a fair well job.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sample_height_array</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="n">population_height_mean</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">population_height</span><span class="p">);</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10000</span>
+    <span class="n">sample_height</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">population_height</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">sample_height_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">varm</span><span class="p">(</span><span class="n">sample_height</span><span class="p">,</span> <span class="n">population_height_mean</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Sampling Distribution of Variance Estimates&quot;</span><span class="p">)</span>
+
+<span class="n">hist2</span> <span class="o">=</span> <span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">sample_height_array</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">strokewidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">strokecolor</span> <span class="o">=</span> <span class="ss">:black</span><span class="p">)</span>
+<span class="n">vlines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">mean</span><span class="p">(</span><span class="n">sample_height_array</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="ss">:red</span><span class="p">)</span>
+<span class="n">text!</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="s">&quot;μ_σ = </span><span class="si">$</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">sample_height_array</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">round</span><span class="p">)</span><span class="s">&quot;</span><span class="p">,</span>
+    <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">sample_height_array</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="n">maximum</span><span class="p">(</span><span class="n">h_counts</span><span class="p">(</span><span class="n">hist2</span><span class="p">))</span> <span class="o">-</span> <span class="mi">50</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03-statistics_32_0.png" src="../_images/03-statistics_32_0.png" />
+</div>
+</div>
+<p>I guess you have noticed the power of estimators now, if you have many samples, by using an unbiased sample estimator, you will get an accurate estimate of population parameters. Even if you have only one sample, you can still can estimate how possible you would be correct based on sampling distribution.</p>
+<p>But we shall keep in mind that <strong>standard deviation</strong> is the most popular measurement of variability. The population/sample standard deviation is simply the square root of variances respectively.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+σ = \sqrt{σ^2}\\
+s = \sqrt{s^2}
+\end{split}\]</div>
+<p>Similar to variance function in NumPy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">stdm</span><span class="p">(</span><span class="n">sample_height_array</span><span class="p">,</span> <span class="n">population_height_mean</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>76.71374145156965
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="measures-of-distribution-shape">
+<h1>Measures of Distribution Shape<a class="headerlink" href="#measures-of-distribution-shape" title="Permalink to this headline">¶</a></h1>
+<p><strong>z-score</strong> is defined as below, used for measuring how many standard deviations away from the mean.</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+z_i = \frac{x_i-\bar{x}}{s}
+\end{equation}
+\]</div>
+<p>Note that <span class="math notranslate nohighlight">\(z\)</span> has subscript notation <span class="math notranslate nohighlight">\(i\)</span> which means each observation has its own <span class="math notranslate nohighlight">\(z\)</span>-score.</p>
+<blockquote>Actually，measuring how many standard deviations away from the mean (or hypothesis) is the fundamental philosophy of frequentist statistics, it asks one important question: <i>how far away from the mean is far-away?</i> If it is far enough, very likely the <i>mean</i> we are looking at right now is not the 'real' mean of the random mechanism that generates the observation.</blockquote>
+<p>Here is the example of calculating <span class="math notranslate nohighlight">\(z\)</span>-score for an randomly generated array. So you can see for a standard normal distribution, it would be fairly hard to stray <span class="math notranslate nohighlight">\(2\)</span> standard deviations away.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">.-</span> <span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">./</span> <span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">strokewidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="ss">:orange</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">),</span> <span class="n">strokecolor</span> <span class="o">=</span> <span class="ss">:black</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&quot;origenal&quot;</span><span class="p">);</span>
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">strokewidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;#2E86C3&quot;</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span> <span class="n">strokecolor</span> <span class="o">=</span> <span class="ss">:black</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&quot;standardized&quot;</span><span class="p">);</span>
+<span class="n">axislegend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="ss">:rt</span><span class="p">);</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03-statistics_40_0.png" src="../_images/03-statistics_40_0.png" />
+</div>
+</div>
+<div class="section" id="chebyshev-s-theorem">
+<h2>Chebyshev’s Theorem<a class="headerlink" href="#chebyshev-s-theorem" title="Permalink to this headline">¶</a></h2>
+<p><strong>Chebyshev’s Theorem</strong> is used as the last resort of deduction when we have absolute <em>no knowledge</em> of a sample and its distribution. It guarantees minimum proportion of data that must be within <span class="math notranslate nohighlight">\(z\)</span> standard deviation from the mean, where the <span class="math notranslate nohighlight">\(z\)</span> is <span class="math notranslate nohighlight">\(z\)</span>-score. But the downside of the theorem is that it only addresses the symmetric distribution.</p>
+<p>\begin{equation}
+p ≥ 1-\frac{1}{z^2}
+\end{equation}</p>
+<p>For instance, the average height of people in Helsinki is <span class="math notranslate nohighlight">\(174cm\)</span>, with a standard deviation of of <span class="math notranslate nohighlight">\(4cm\)</span>, so the question is how many people (percentage) are within <span class="math notranslate nohighlight">\(166cm\)</span> and <span class="math notranslate nohighlight">\(182cm\)</span>? Note that this range is symmetrically <span class="math notranslate nohighlight">\(2\)</span> standard derivations away from its mean. Thus according to Chebyshev, we know that</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">zₗ</span> <span class="o">=</span> <span class="p">(</span><span class="mi">166</span> <span class="o">-</span> <span class="mi">174</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span> <span class="c"># lower z-score</span>
+<span class="n">zᵤ</span> <span class="o">=</span> <span class="p">(</span><span class="mi">182</span> <span class="o">-</span> <span class="mi">174</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span> <span class="c"># upper z-score</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because it is a symmetric range, <span class="math notranslate nohighlight">\(z\)</span>-score on each sides are equal, we can calculate the probability as below and print the conclusion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">zₗ</span><span class="o">^</span><span class="mi">2</span>
+<span class="n">print</span><span class="p">(</span><span class="s">&quot;At least </span><span class="si">$</span><span class="p">(</span><span class="mi">100</span><span class="n">p</span><span class="p">)</span><span class="si">% o</span><span class="s">f people are within 168cm and 182cm in Helsinki.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At least 75.0% of people are within 168cm and 182cm in Helsinki.
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you think of Chebyshev as a function, then the only variable is <span class="math notranslate nohighlight">\(z\)</span>-score. Now we define a Chebyshev function and plot it against <span class="math notranslate nohighlight">\(z\)</span>-score.</p>
+<p>Because <span class="math notranslate nohighlight">\(z\)</span>-score means how many standard deviation away from the mean, from the graph we could conclude that no matter what types of distributions we are investigating, it is guaranteed that <span class="math notranslate nohighlight">\(± 2.5\)</span> standard deviation range would cover at least <span class="math notranslate nohighlight">\(84\%\)</span> of data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">chebyshev</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">z</span><span class="o">^</span><span class="mi">2</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">zscores</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mf">0.5</span><span class="o">:</span><span class="mi">20</span>
+
+<span class="n">chebyshev_array</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span> <span class="n">length</span><span class="p">(</span><span class="n">zscores</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="o">∈</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">zscores</span><span class="p">)</span>
+    <span class="n">chebyshev_array</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">chebyshev</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span>
+    <span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Chebyshev&#39;s Theorem&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span> <span class="o">=</span> <span class="s">&quot;z-score&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span> <span class="o">=</span> <span class="s">&quot;Probability&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">zscores</span><span class="p">,</span> <span class="n">chebyshev_array</span><span class="p">)</span>
+<span class="n">scatter!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">],</span> <span class="p">[</span><span class="n">chebyshev</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)],</span> <span class="n">color</span> <span class="o">=</span> <span class="ss">:red</span><span class="p">)</span>
+<span class="n">text!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s">&quot;(2.5, </span><span class="si">$</span><span class="p">(</span><span class="n">chebyshev</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="s">%)&quot;</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">chebyshev</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span><span class="o">-</span><span class="mf">0.1</span><span class="p">))</span>
+
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03-statistics_48_0.png" src="../_images/03-statistics_48_0.png" />
+</div>
+</div>
+<p>However in practice we are more likely to deal with data of (semi)bell-shape distribution, they are regular and easier to make deduction. So <strong>Empirical Rules</strong> apply.</p>
+<ul class="simple">
+<li><p>68% of data within 1 standard deviation of the mean</p></li>
+<li><p>95% of data within 2 standard deviation of the mean</p></li>
+<li><p>99.7% of data within 3 standard deviation of the mean</p></li>
+</ul>
+<p>These empirical numbers are from normal distribution.</p>
+</div>
+</div>
+<div class="section" id="measures-of-association">
+<h1>Measures of Association<a class="headerlink" href="#measures-of-association" title="Permalink to this headline">¶</a></h1>
+<p>With similar notation, the <strong>population</strong> and <strong>sample covariance</strong> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+σ_{xy} \frac{∑(x_i-μ_x)(y_i-μ_y)}{N}\\
+s_{xy} \frac{∑(x_i-\bar{x})(y_i-\bar{y})}{n-1}
+\end{split}\]</div>
+<p>Generate two random arrays, then evaluate a covariance matrix. The values on the diagonal presents the variance, the off-diagonal presents the covariance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">300</span><span class="p">);</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">300</span><span class="p">);</span>
+<span class="n">cov</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.009355463476744815
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Correlation Coefficent</strong> is normalized version of covariance, just like the standard deviation is the normalised variance, some statistics textbook calls it <i>Pearson Product Moment Correlation Coefficient</i>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ρ = \frac{σ_{xy}}{σ_xσ_y}\\
+r_{xy}=\frac{s_{xy}}{s_xs_y}
+\end{split}\]</div>
+<p>For the sake of everyone’s sanity, not to cluster the lecture notes with repetive codes, some of them were transported in to <code class="docutils literal notranslate"><span class="pre">plot_material.py</span></code> module. Take a look inside if you are curious.</p>
+<p>What we did below was basically generating eight linear regression plot <span class="math notranslate nohighlight">\(Y = β_1+β_2X+u\)</span> with different parameters. The correlation coefficient <span class="math notranslate nohighlight">\(ρ\)</span> is displayed in the graph, therefore you could observe that the correlation coefficients are affected by size of parameters <span class="math notranslate nohighlight">\(β_2\)</span> and scale of error term.</p>
+<p>The reasons are:</p>
+<ul class="simple">
+<li><p>The more significantly <span class="math notranslate nohighlight">\(β_2\)</span> differs from <span class="math notranslate nohighlight">\(0\)</span>, the more siginificant linear relationship the model has, therefore the relatively larger correlation between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
+<li><p>If the parameters <span class="math notranslate nohighlight">\(β_1\)</span> and <span class="math notranslate nohighlight">\(β_2\)</span> kept constant, the larger scale of the error term, the more dispersed the data are, therefore lower correlation as well.</p></li>
+</ul>
+<p>We will dive much deeper into linear regression in our econometrics training sessions.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.7"
+        },
+        kernelOptions: {
+            kernelName: "julia-1.7",
+            path: "./probability"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.7'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="02-univariate-distributions.html" title="previous page">Univariate Distributions</a>
+    <a class='right-next' id="next-link" href="04-multivariate-distributions.html" title="next page">Multivariate Distributions</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By ivaquero<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

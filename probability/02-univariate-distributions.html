@@ -1,0 +1,1243 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Univariate Distributions &#8212; A Starter of Physics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://ivaquero.github.io/excss-physics/probability/02-univariate-distributions.html" />
+    <link rel="shortcut icon" href="../_static/logo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Statistics" href="03-statistics.html" />
+    <link rel="prev" title="Counting" href="01-counting.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">A Starter of Physics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   A Starter of Physics
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Probablity
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-counting.html">
+   Counting
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Univariate Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-statistics.html">
+   Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-multivariate-distributions.html">
+   Multivariate Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-transformations.html">
+   Transformations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-conditional-probability.html">
+   Conditional Probability
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../basics/p-correlation.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../basics/p-distribution.html">
+   Distribution
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/probability/02-univariate-distributions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ivaquero/excss-physics/master?urlpath=lab/tree/probability/02-univariate-distributions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Univariate Distributions
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discrete-distributions">
+   Discrete distributions
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#binomial-distribution">
+     Binomial Distribution
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#binomial-random-variable-generator">
+       Binomial Random Variable Generator
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#poisson-random-variable-generator">
+       Poisson Random Variable Generator
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geometric-distribution">
+     Geometric Distribution
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypergeometric-distribution">
+     Hypergeometric Distribution
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discrete-uniform-distribution">
+     Discrete Uniform Distribution
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#discrete-probability-mass-function">
+       Discrete Probability Mass Function
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continous-distributions">
+   Continous Distributions
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#continuous-uniform-distribution">
+     Continuous Uniform Distribution
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cdf-and-pdf-of-continuous-uniform-distribution">
+       CDF and PDF of Continuous Uniform Distribution
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normal-distribution">
+     Normal Distribution
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#inverse-normal-cdf">
+       Inverse Normal CDF
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#normal-random-variable-generator">
+       Normal Random Variable Generator
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#different-representations">
+     Different Representations
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shifted-distribution">
+     Shifted distribution
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-numbers-with-a-normal-distribution">
+     Random numbers with a normal distribution
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beta-distribution">
+     Beta Distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="univariate-distributions">
+<h1>Univariate Distributions<a class="headerlink" href="#univariate-distributions" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">Combinatorics</span>
+<span class="k">using</span> <span class="n">Distributions</span><span class="p">,</span> <span class="n">Random</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">DataFrames</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">CairoMakie</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="discrete-distributions">
+<h1>Discrete distributions<a class="headerlink" href="#discrete-distributions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="binomial-distribution">
+<h2>Binomial Distribution<a class="headerlink" href="#binomial-distribution" title="Permalink to this headline">¶</a></h2>
+<p>The first one is binomial distribution, we will give a it more extensive coverage, other distributions have similar functions in Python.</p>
+<p>A binomial experiment has 4 features:</p>
+<ul class="simple">
+<li><p>A sequence of <span class="math notranslate nohighlight">\(n\)</span> identical trials, e.g. throwing darts</p></li>
+<li><p>Only two outcomes are possible: <em>success</em> or <em>failure</em>, e.g. hitting bullseye or not</p></li>
+<li><p>The probability of success <span class="math notranslate nohighlight">\(p\)</span> does not change from trial to trial</p></li>
+<li><p>Trials are independent events, e.g. first throw doesn’t affect the second throw</p></li>
+</ul>
+<p>The <strong>probability mass function(PMF)</strong> of binomial distribution is</p>
+<div class="math notranslate nohighlight">
+\[
+f(k, n, p) = C_k^n p^kq^{n-k}
+\]</div>
+<p style="font-size:17px">
+<p>
+<table style="text-align:center; width:50%; text-align:center;font-size: 110% ">
+  <tr>
+    <th>parameters</th>
+    <th>meaning</th>
+  </tr>
+  <tr>
+    <td>n</td>
+    <td>number of trials</td>
+  </tr>
+  <tr>
+    <td>k</td>
+    <td>number of specific outcome</td>
+  </tr>
+  <tr>
+    <td>p</td>
+    <td>probability of success</td>
+  </tr>
+  <tr>
+    <td>q</td>
+    <td>probability of failure</td>
+  </tr>
+</table>
+<p>Here’s a simple example.</p>
+<p>A personal banker might meet 50 people enquiring for loan monthly, empirically 30% of them has bad credit history. So calculate probability from 1 to 50 people has bad credit history, meaning calculate 1 person out of 50 has bad credit, 2 persons out of 50 have bad credit, so on so forth till 50 persons (all of them).</p>
+<p>Start from a single number could be more intuitive, what’s probability that a personal banker to encounter exact <span class="math notranslate nohighlight">\(14\)</span> persons of bad credit history in a month?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Float64</span><span class="p">;</span> <span class="n">d</span><span class="o">::</span><span class="kt">Int64</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">round</span><span class="p">(</span><span class="mi">100</span><span class="n">x</span><span class="p">;</span> <span class="n">digits</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>percent (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>  <span class="c"># what is the prob that exact 14 ppl she met had bad credit history?</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">factorial</span><span class="p">(</span><span class="n">big</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">big</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)));</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>
+<span class="n">f_binomial</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">p</span><span class="o">^</span><span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="kt">Float64</span><span class="p">;</span>
+
+<span class="n">print</span><span class="p">(</span><span class="s">&quot;The prob of meeting </span><span class="si">$k</span><span class="s"> persons who has bad credit history is </span><span class="si">$</span><span class="p">(</span><span class="n">f_binomial</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The prob of meeting 14 persons who has bad credit history is 11.89%.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">bad_credit_person</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">51</span>
+
+<span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">d_binom</span> <span class="o">=</span> <span class="n">Binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+<span class="n">pdf_binom</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_binom</span><span class="p">,</span> <span class="n">bad_credit_person</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span>
+    <span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;Number of Person who Has Bad Credit History&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;Probability&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s">&quot;The probability that from 1 to </span><span class="si">$n</span><span class="s"> persons</span><span class="se">\n</span><span class="s"> who have bad credit history&quot;</span>
+<span class="p">)</span>
+
+<span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">bad_credit_person</span><span class="p">,</span> <span class="n">pdf_binom</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="ss">:red</span><span class="p">)</span>
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">)</span>
+
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_12_0.png" src="../_images/02-univariate-distributions_12_0.png" />
+</div>
+</div>
+<p>We could interpret the plot with straightforward observation:</p>
+<ul class="simple">
+<li><p>Most likely the personal banker would encounter <span class="math notranslate nohighlight">\(10\)</span> to <span class="math notranslate nohighlight">\(20\)</span> persons who have bad credit history.</p></li>
+<li><p>Encountering less than <span class="math notranslate nohighlight">\(5\)</span> or more than <span class="math notranslate nohighlight">\(25\)</span> person are less likely.</p></li>
+<li><p>The highest possibility is to encounter <span class="math notranslate nohighlight">\(50× .03 = 15\)</span> persons with bad credit.</p></li>
+</ul>
+<p>Next example we can formulate a question by using <strong>cumulative probability distribution</strong>.</p>
+<p>If a stock trader trades <span class="math notranslate nohighlight">\(n\)</span> times a month, he has a <span class="math notranslate nohighlight">\(p%\)</span> chance of winning the trade, find out the probability that he can win less than <span class="math notranslate nohighlight">\(k\)</span> trades a month.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.55</span><span class="p">;</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<span class="n">k1</span><span class="p">,</span> <span class="n">k2</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">;</span>
+
+<span class="n">win_less</span> <span class="o">=</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_binom</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+<span class="n">win_more</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_binom</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+<span class="n">win_betw</span> <span class="o">=</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_binom</span><span class="p">,</span> <span class="n">k1</span><span class="p">)</span> <span class="o">-</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_binom</span><span class="p">,</span> <span class="n">k2</span><span class="p">);</span>
+
+<span class="n">println</span><span class="p">(</span>
+    <span class="s">&quot;If a trader&#39;s winning rate is </span><span class="si">$</span><span class="p">(</span><span class="n">p</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%, the probability of winning less than </span><span class="si">$k</span><span class="s"> times is </span><span class="si">$</span><span class="p">(</span><span class="n">win_less</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="si">% i</span><span class="s">f he trades </span><span class="si">$n</span><span class="s"> per month.&quot;</span>
+<span class="p">)</span>
+<span class="n">println</span><span class="p">(</span>
+    <span class="s">&quot;If a trader&#39;s winning rate is </span><span class="si">$</span><span class="p">(</span><span class="n">p</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%, the probability of winning more than </span><span class="si">$k</span><span class="s"> times is </span><span class="si">$</span><span class="p">(</span><span class="n">win_more</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="si">% i</span><span class="s">f he trades </span><span class="si">$n</span><span class="s"> per month.&quot;</span>
+<span class="p">)</span>
+<span class="n">println</span><span class="p">(</span>
+    <span class="s">&quot;If a trader&#39;s winning rate is </span><span class="si">$</span><span class="p">(</span><span class="n">p</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%, the probability of winning between </span><span class="si">$k1</span><span class="s"> and </span><span class="si">$k2</span><span class="s"> times is </span><span class="si">$</span><span class="p">(</span><span class="n">win_betw</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="si">% i</span><span class="s">f he trades </span><span class="si">$n</span><span class="s"> per month.&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If a trader&#39;s winning rate is 55.0%, the probability of winning less than 12 times is 22.29% if he trades 20 per month.
+If a trader&#39;s winning rate is 55.0%, the probability of winning more than 12 times is 77.71% if he trades 20 per month.
+If a trader&#39;s winning rate is 55.0%, the probability of winning between 14 and 4 times is 44.67% if he trades 20 per month.
+</pre></div>
+</div>
+</div>
+</div>
+<p>What if the probability of wining changing from 0.1 to 0.8, what is the probability that he wins less than 6 trades, assuming every month he trades 20 times.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+
+<span class="n">win_rates</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">:</span><span class="mf">0.05</span><span class="o">:</span><span class="mf">0.81</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="n">p_new</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+
+<span class="n">win_lesses</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}([]);</span>
+
+<span class="k">for</span> <span class="n">win_rate</span> <span class="o">∈</span> <span class="n">win_rates</span>
+    <span class="n">d_binom2</span> <span class="o">=</span> <span class="n">Binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">win_rate</span><span class="p">)</span>
+    <span class="n">win_less</span> <span class="o">=</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_binom2</span><span class="p">,</span> <span class="n">p_new</span><span class="p">)</span>
+    <span class="n">push!</span><span class="p">(</span><span class="n">win_lesses</span><span class="p">,</span> <span class="n">win_less</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">win_rate</span><span class="o">=</span><span class="n">win_rates</span><span class="p">,</span> <span class="n">win_less</span><span class="o">=</span><span class="n">win_lesses</span><span class="p">);</span>
+<span class="n">df</span> <span class="o">|&gt;</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">first</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class="data-frame"><p>5 rows × 2 columns</p><table class="data-frame"><thead><tr><th></th><th>win_rate</th><th>win_less</th></tr><tr><th></th><th title="Float64">Float64</th><th title="Float64">Float64</th></tr></thead><tbody><tr><th>1</th><td>0.1</td><td>0.997614</td></tr><tr><th>2</th><td>0.15</td><td>0.978065</td></tr><tr><th>3</th><td>0.2</td><td>0.913307</td></tr><tr><th>4</th><td>0.25</td><td>0.785782</td></tr><tr><th>5</th><td>0.3</td><td>0.60801</td></tr></tbody></table></div></div></div>
+</div>
+<p>According to the table above, if the trader has at least <span class="math notranslate nohighlight">\(60\%\)</span> winning rate, merely <span class="math notranslate nohighlight">\(0.6\%\)</span> probability that he wins less then <span class="math notranslate nohighlight">\(6\)</span> trades. Marginally higher winning rates are even important for traders in the short run.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This point means that if the winning rate is 40%,\n then the probability of winning less\n than 6 trades is 25%.</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span>
+    <span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;Winning Rate&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;Probabilit of winning Less than 6 trades&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">scatter!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">win_rates</span><span class="p">,</span> <span class="n">win_lesses</span><span class="p">)</span>
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">)</span>
+
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_19_0.png" src="../_images/02-univariate-distributions_19_0.png" />
+</div>
+</div>
+<div class="section" id="binomial-random-variable-generator">
+<h3>Binomial Random Variable Generator<a class="headerlink" href="#binomial-random-variable-generator" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>
+<span class="n">d_binom3</span> <span class="o">=</span> <span class="n">Binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+<span class="n">rvs_binom</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_binom3</span><span class="p">,</span> <span class="mi">10000</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Generated Binomial R.V.s&quot;</span><span class="p">);</span>
+
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rvs_binom</span><span class="p">;</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">160</span><span class="p">);</span>
+<span class="n">vlines!</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="mi">30</span><span class="p">,</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="ss">:red</span><span class="p">,</span>
+    <span class="n">linestyle</span> <span class="o">=</span> <span class="ss">:dash</span><span class="p">,</span>
+    <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s">&quot;theoretical</span><span class="se">\n</span><span class="s">highest draw (p×n)&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="n">axislegend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="ss">:rt</span><span class="p">,</span> <span class="n">labelsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">);</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_22_0.png" src="../_images/02-univariate-distributions_22_0.png" />
+</div>
+</div>
+<p>When <span class="math notranslate nohighlight">\(n → ∞\)</span> and <span class="math notranslate nohighlight">\(p → 0\)</span>，a binomial distribution approaches a <strong>Poisson distribution</strong> asymptotically, i.e. when <span class="math notranslate nohighlight">\(n\)</span> is large and <span class="math notranslate nohighlight">\(p\)</span> is small, we can use Poisson to approximate Binomial.</p>
+<p>Again with trader’s example, if a trader has <span class="math notranslate nohighlight">\(1/1000\)</span> probability to encounter a ‘wiped-out’ in each trade (assume each trade is independent, actually not), and trades <span class="math notranslate nohighlight">\(20\)</span> times per month, what is the probability that the trader will encounter twice ‘wiped-out’ within 5 years?</p>
+<p>This problem can be solved by Binomial, the formulation as below</p>
+<div class="math notranslate nohighlight">
+\[
+\text{trades} = 20× 12× 5=1200
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(x=2) = \binom{1200}{2}\Big(\frac{1}{1000}\Big)^2\Big(\frac{999}{1000}\Big)^{1198}
+\]</div>
+<p>As we mentioned, Poisson is the limit version of Binomial, it is a suitable case to use, calculate <span class="math notranslate nohighlight">\(λ\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+λ = np = 1200 × \frac{1}{1000} = 1.2
+\end{equation}
+\]</div>
+<p>it means every 5 years, there is in average 1.2 times of chance to get wiped out.</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+P(x=2)=\frac{λ^ke^{-λ}}{k!}=\frac{1.2^2e^{-1.2}}{2!}
+\end{equation}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">*</span> <span class="mi">5</span><span class="p">;</span>  <span class="c"># 20 times per month, and 5 years span</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">;</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">n</span><span class="p">;</span>
+
+<span class="n">d_poisson</span> <span class="o">=</span> <span class="n">Poisson</span><span class="p">(</span><span class="n">λ</span><span class="p">);</span>
+<span class="n">pmf_poisson</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_poisson</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+
+<span class="n">print</span><span class="p">(</span>
+    <span class="s">&quot;The probability of having </span><span class="si">$k</span><span class="s"> wiped-out shock(s) in a span of 5 years is </span><span class="si">$</span><span class="p">(</span><span class="n">pmf_poisson</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of having 2 wiped-out shock(s) in a span of 5 years is 21.69%.
+</pre></div>
+</div>
+</div>
+</div>
+<p>You probably have notices that Binomial and Poisson provide the same answer.</p>
+<p>Similarly what’s the probability of having more than <span class="math notranslate nohighlight">\(k\)</span> times wiped-out?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">sf_poisson</span> <span class="o">=</span> <span class="n">ccdf</span><span class="p">(</span><span class="n">d_poisson</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+
+<span class="n">print</span><span class="p">(</span>
+    <span class="s">&quot;The probability of having more than </span><span class="si">$k</span><span class="s"> BS shock in 5 years is </span><span class="si">$</span><span class="p">(</span><span class="n">sf_poisson</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of having more than 2 BS shock in 5 years is 12.05%.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="poisson-random-variable-generator">
+<h3>Poisson Random Variable Generator<a class="headerlink" href="#poisson-random-variable-generator" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">rvs_poisson</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_poisson</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Generated Poisson R.V.s&quot;</span><span class="p">);</span>
+
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rvs_poisson</span><span class="p">;</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">);</span>
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_29_0.png" src="../_images/02-univariate-distributions_29_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="geometric-distribution">
+<h2>Geometric Distribution<a class="headerlink" href="#geometric-distribution" title="Permalink to this headline">¶</a></h2>
+<p>The PMF of <strong>Geometric Distribution</strong> is</p>
+<div class="math notranslate nohighlight">
+\[
+f(k)=p(1-p)^k
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(k ∈  \mathbb{Z}^+\)</span> is a number of failures before first success, and <span class="math notranslate nohighlight">\(p\)</span> is the probability of success.</p>
+<p>Geometric Distribution is to model the solutions to questions: ‘<em>How many times you have to fail in order to embrace the initial success?</em>’</p>
+<p>If you are shooting basketball to the basket, your success rate is <span class="math notranslate nohighlight">\(30\%\)</span>, what’s the probability of first success after <span class="math notranslate nohighlight">\(k\)</span> times of trials?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>
+<span class="n">d_geom</span> <span class="o">=</span> <span class="n">Geometric</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="n">pmf_geom</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_geom</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+
+<span class="n">print</span><span class="p">(</span>
+    <span class="s">&quot;The probability of observing exact </span><span class="si">$k</span><span class="s"> times of failures trials before first success is </span><span class="si">$</span><span class="p">(</span><span class="n">pmf_geom</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of observing exact 5 times of failures trials before first success is 5.04%.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again, CDF could answer the a question: <em>What’s the probability of observing <span class="math notranslate nohighlight">\(k\)</span> or less than <span class="math notranslate nohighlight">\(k\)</span> times of failure before the first success?</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">cdf_geom</span> <span class="o">=</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_geom</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="n">print</span><span class="p">(</span>
+    <span class="s">&quot;The probability of observing </span><span class="si">$k</span><span class="s"> or fewer than </span><span class="si">$k</span><span class="s"> times of failure before a first success is </span><span class="si">$</span><span class="p">(</span><span class="n">cdf_geom</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">.&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of observing 5 or fewer than 5 times of failure before a first success is 91.76.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">rvs_geom</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_geom</span><span class="p">,</span> <span class="mi">10000</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Generated Geometric R.V.s&quot;</span><span class="p">)</span>
+
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rvs_geom</span><span class="p">;</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span>
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">20.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3100</span><span class="p">)</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_35_0.png" src="../_images/02-univariate-distributions_35_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="hypergeometric-distribution">
+<h2>Hypergeometric Distribution<a class="headerlink" href="#hypergeometric-distribution" title="Permalink to this headline">¶</a></h2>
+<p>The main difference between hypergeometric and binomial is that the former’s sampling is not independent of each other, i.e. the sampling is <strong>without replacement</strong>.</p>
+<p>The PMF of hypergeometric is</p>
+<div class="math notranslate nohighlight">
+\[
+f(x) =\frac{{K\choose k} {N-K \choose n-k}}{{N\choose n}}
+\]</div>
+<p>Read the PMF with this example: <span class="math notranslate nohighlight">\(100\)</span> people live in a building, <span class="math notranslate nohighlight">\(20\)</span> of them are stashing drugs, <span class="math notranslate nohighlight">\(80\)</span> are clean, but we don’t have information who is clean or not. In one field operation, police took away <span class="math notranslate nohighlight">\(5\)</span> persons form the building, what is the probability of having exact <span class="math notranslate nohighlight">\(2\)</span> persons .are drug stasher?</p>
+<p>Solution:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{{20\choose2}{80\choose3}}{{100\choose5}}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">d_hgeom</span> <span class="o">=</span> <span class="n">Hypergeometric</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="n">pmf_hgeom</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_hgeom</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+
+<span class="n">print</span><span class="p">(</span>
+    <span class="s">&quot;The probability of getting </span><span class="si">$k</span><span class="s"> drug stashers by taking </span><span class="si">$n</span><span class="s"> persons away is </span><span class="si">$</span><span class="p">(</span><span class="n">pmf_hgeom</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of getting 2 drug stashers by taking 5 persons away is 20.73%.
+</pre></div>
+</div>
+</div>
+</div>
+<p>A histogram would provide some intuitions of geometric distribution.</p>
+<p>It can be interpreted as: if 100 persons in the building, 20 are drug stasher, take 5 out of 100. The probability of getting from 1 to 5 drug stashers, is shown in the chart. As we can see it is nearly impossible to get 4 or 5 drugs stasher. But getting one is the most possible outcome</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">rvs_hgeom</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_hgeom</span><span class="p">,</span> <span class="mi">10000</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Generated Hypergeometric R.V.s&quot;</span><span class="p">)</span>
+
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rvs_hgeom</span><span class="p">;</span> <span class="n">normalization</span><span class="o">=</span><span class="ss">:pdf</span><span class="p">,</span> <span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span>
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_40_0.png" src="../_images/02-univariate-distributions_40_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="discrete-uniform-distribution">
+<h2>Discrete Uniform Distribution<a class="headerlink" href="#discrete-uniform-distribution" title="Permalink to this headline">¶</a></h2>
+<p>Rolling a die is the simplest <strong>discrete uniform distribution</strong> generator from <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(6\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">l</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">;</span>
+<span class="n">d_uniform</span> <span class="o">=</span> <span class="n">Uniform</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span>
+<span class="n">rvs_uniform</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_uniform</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Discrete Uniform Frequency Distribution&quot;</span><span class="p">)</span>
+
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rvs_uniform</span><span class="p">;</span> <span class="n">bins</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span>
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_43_0.png" src="../_images/02-univariate-distributions_43_0.png" />
+</div>
+</div>
+<div class="section" id="discrete-probability-mass-function">
+<h3>Discrete Probability Mass Function<a class="headerlink" href="#discrete-probability-mass-function" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="section" id="continous-distributions">
+<h1>Continous Distributions<a class="headerlink" href="#continous-distributions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="continuous-uniform-distribution">
+<h2>Continuous Uniform Distribution<a class="headerlink" href="#continuous-uniform-distribution" title="Permalink to this headline">¶</a></h2>
+<p>The PDF of <strong>Continuous uniform distribution</strong> is</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+f(x)=\frac{1}{b-a}
+\end{equation}
+\]</div>
+<p>And its r.v. generator is one of the most commonly used function in NumPy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">l</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">d_uniform</span> <span class="o">=</span> <span class="n">Uniform</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span>
+<span class="n">rvs_uniform</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_uniform</span><span class="p">,</span> <span class="mi">10000</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Continous Uniform Frequency Distribution&quot;</span><span class="p">)</span>
+
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rvs_uniform</span><span class="p">;</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">normalization</span><span class="o">=</span><span class="ss">:pdf</span><span class="p">,</span> <span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span>
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_48_0.png" src="../_images/02-univariate-distributions_48_0.png" />
+</div>
+</div>
+<div class="section" id="cdf-and-pdf-of-continuous-uniform-distribution">
+<h3>CDF and PDF of Continuous Uniform Distribution<a class="headerlink" href="#cdf-and-pdf-of-continuous-uniform-distribution" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">plot_prob</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf</span><span class="o">::</span><span class="kt">Vector</span><span class="p">,</span> <span class="n">cdf</span><span class="o">::</span><span class="kt">Vector</span><span class="p">,</span> <span class="n">title</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;PDF of </span><span class="si">$title</span><span class="s"> Distribution&quot;</span><span class="p">);</span>
+    <span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">pdf</span><span class="p">);</span>
+    
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;CDF of </span><span class="si">$title</span><span class="s"> Distribution&quot;</span><span class="p">);</span>
+    <span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">cdf</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">fig</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plot_prob (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">unif_x</span> <span class="o">=</span> <span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mf">.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">unif_pdf</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_uniform</span><span class="p">,</span> <span class="n">unif_x</span><span class="p">)</span>
+<span class="n">unif_cdf</span> <span class="o">=</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_uniform</span><span class="p">,</span> <span class="n">unif_x</span><span class="p">)</span>
+
+<span class="n">plot_prob</span><span class="p">(</span><span class="n">unif_x</span><span class="p">,</span> <span class="n">unif_pdf</span><span class="p">,</span> <span class="n">unif_cdf</span><span class="p">,</span> <span class="s">&quot;Continous Uniform&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_51_0.png" src="../_images/02-univariate-distributions_51_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="normal-distribution">
+<h2>Normal Distribution<a class="headerlink" href="#normal-distribution" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>normal distribution</strong> is the king of all distributions. The PDF of Normal distribution is</p>
+<div class="math notranslate nohighlight">
+\[
+f(x)=\frac{1}{σ \sqrt{2 π}} e^{-\frac{1}{2}\left(\frac{x-μ}{σ}\right)^{2}}
+\]</div>
+<p>Below are the plots of CDF and PDF.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">μ</span><span class="p">,</span> <span class="n">σ</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">norm_x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">:</span><span class="mf">0.1</span><span class="o">:</span><span class="mi">6</span><span class="p">;</span>
+<span class="n">d_normal</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">μ</span><span class="p">,</span> <span class="n">σ</span><span class="p">);</span>
+<span class="n">norm_pdf</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_normal</span><span class="p">,</span> <span class="n">norm_x</span><span class="p">);</span>
+<span class="n">norm_cdf</span> <span class="o">=</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_normal</span><span class="p">,</span> <span class="n">norm_x</span><span class="p">);</span>
+
+<span class="n">plot_prob</span><span class="p">(</span><span class="n">norm_x</span><span class="p">,</span> <span class="n">norm_pdf</span><span class="p">,</span> <span class="n">norm_cdf</span><span class="p">,</span> <span class="s">&quot;Normal&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_54_0.png" src="../_images/02-univariate-distributions_54_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">μ</span><span class="p">,</span> <span class="n">σ</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">;</span>
+<span class="n">d_normal2</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">μ</span><span class="p">,</span> <span class="n">σ</span><span class="p">);</span>
+
+<span class="n">norm_x2</span> <span class="o">=</span> <span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">norm_pdf</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="n">norm_x2</span><span class="p">)</span>
+<span class="n">norm_cdf</span> <span class="o">=</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="n">norm_x2</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">xlabel</span> <span class="o">=</span> <span class="s">&quot;X&quot;</span><span class="p">,</span> <span class="n">ylabel</span> <span class="o">=</span> <span class="s">&quot;PDF(X)&quot;</span><span class="p">);</span>
+<span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">norm_x2</span><span class="p">,</span> <span class="n">norm_pdf</span><span class="p">);</span>
+<span class="n">band!</span><span class="p">(</span><span class="n">norm_x2</span><span class="p">[</span><span class="n">norm_x2</span><span class="o">.≤</span><span class="n">μ</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">norm_pdf</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="n">argmax</span><span class="p">(</span><span class="n">norm_pdf</span><span class="p">)],</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;#2E86C3&quot;</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">))</span>
+<span class="n">text!</span><span class="p">(</span>
+    <span class="s">&quot;CDF(x)&quot;</span><span class="p">,</span>
+    <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="n">μ</span> <span class="o">-</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="n">μ</span><span class="p">)),</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="ss">:white</span><span class="p">,</span>
+    <span class="n">textsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">xlabel</span> <span class="o">=</span> <span class="s">&quot;X&quot;</span><span class="p">,</span> <span class="n">ylabel</span> <span class="o">=</span> <span class="s">&quot;CDF(X)&quot;</span><span class="p">);</span>
+<span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">norm_x2</span><span class="p">,</span> <span class="n">norm_cdf</span><span class="p">);</span>
+<span class="n">scatter!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="p">[</span><span class="n">μ</span><span class="p">],</span> <span class="p">[</span><span class="n">cdf</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="n">μ</span><span class="p">)],</span> <span class="n">color</span> <span class="o">=</span> <span class="ss">:red</span><span class="p">);</span>
+<span class="n">vlines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="ss">:dash</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;#2E86C3&quot;</span><span class="p">)</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_55_0.png" src="../_images/02-univariate-distributions_55_0.png" />
+</div>
+</div>
+<div class="section" id="inverse-normal-cdf">
+<h3>Inverse Normal CDF<a class="headerlink" href="#inverse-normal-cdf" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">norm_95_r</span> <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="mf">.975</span><span class="p">);</span>
+<span class="n">norm_95_l</span> <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="mf">.025</span><span class="p">);</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+
+<span class="n">xl</span> <span class="o">=</span> <span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">norm_95_l</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="n">yl</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="n">xl</span><span class="p">);</span>
+<span class="n">xr</span> <span class="o">=</span> <span class="kt">LinRange</span><span class="p">(</span><span class="n">norm_95_r</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="n">yr</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="n">xr</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Normal Distribution and 2.5% Shaded Area&quot;</span><span class="p">);</span>
+
+<span class="n">lines!</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;#CC4845&quot;</span><span class="p">,</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s">&quot;PDF of Normal Distribution&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">band!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;#2E86C3&quot;</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">))</span>
+<span class="n">band!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">xl</span><span class="p">,</span> <span class="n">yl</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;#2E86C3&quot;</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">))</span>
+<span class="n">band!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">xr</span><span class="p">,</span> <span class="n">yr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;#2E86C3&quot;</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">))</span>
+
+<span class="n">text!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s">&quot;95%&quot;</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">.4</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="ss">:white</span><span class="p">)</span>
+<span class="n">text!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s">&quot;2.5%&quot;</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.7</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="ss">:white</span><span class="p">)</span>
+<span class="n">text!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s">&quot;2.5%&quot;</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="ss">:white</span><span class="p">)</span>
+
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_57_0.png" src="../_images/02-univariate-distributions_57_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="normal-random-variable-generator">
+<h3>Normal Random Variable Generator<a class="headerlink" href="#normal-random-variable-generator" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">rvs_norm</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Normal Frequency Distribution&quot;</span><span class="p">)</span>
+
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rvs_norm</span><span class="p">;</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">normalization</span><span class="o">=</span><span class="ss">:pdf</span><span class="p">,</span> <span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_59_0.png" src="../_images/02-univariate-distributions_59_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="different-representations">
+<h2>Different Representations<a class="headerlink" href="#different-representations" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="o">×</span> <span class="o">=</span> <span class="n">Iterators</span><span class="o">.</span><span class="n">product</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span><span class="o">:</span><span class="mf">0.1</span><span class="o">:</span><span class="mi">10</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="mi">0</span><span class="o">:</span><span class="mf">0.001</span><span class="o">:</span><span class="mi">1</span>
+<span class="n">d_norm</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">pdf_norm</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_norm</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;PDF&quot;</span><span class="p">);</span>
+
+<span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">pdf_norm</span><span class="p">);</span>
+<span class="n">xlims!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]);</span>
+
+<span class="n">inds</span> <span class="o">=</span> <span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">×</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">|&gt;</span> <span class="n">collect</span><span class="p">;</span>
+<span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">cdf</span><span class="p">,</span> <span class="n">quantile</span><span class="p">,</span> <span class="n">ccdf</span><span class="p">,</span> <span class="n">cquantile</span><span class="p">]</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;cdf&quot;</span><span class="p">,</span> <span class="s">&quot;ppf&quot;</span><span class="p">,</span> <span class="s">&quot;sf&quot;</span><span class="p">,</span> <span class="s">&quot;isf&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="o">∈</span> <span class="n">zip</span><span class="p">(</span><span class="n">inds</span><span class="p">,</span> <span class="n">funcs</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="n">ind</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ind</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+    <span class="k">if</span> <span class="n">ind</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">func</span><span class="p">(</span><span class="n">d_norm</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+        <span class="n">xlims!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">else</span>
+        <span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">func</span><span class="p">(</span><span class="n">d_norm</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
+        <span class="n">xlims!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_62_0.png" src="../_images/02-univariate-distributions_62_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="shifted-distribution">
+<h2>Shifted distribution<a class="headerlink" href="#shifted-distribution" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span><span class="o">:</span><span class="mf">0.1</span><span class="o">:</span><span class="mi">15</span><span class="p">;</span>
+<span class="n">myMean</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">mySD</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">Normal</span><span class="p">(</span><span class="n">myMean</span><span class="p">,</span> <span class="n">mySD</span><span class="p">),</span> <span class="n">x</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Shifted Normal Distribution&quot;</span><span class="p">);</span>
+
+<span class="n">lines!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_64_0.png" src="../_images/02-univariate-distributions_64_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="random-numbers-with-a-normal-distribution">
+<h2>Random numbers with a normal distribution<a class="headerlink" href="#random-numbers-with-a-normal-distribution" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">numData</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">Normal</span><span class="p">(</span><span class="n">myMean</span><span class="p">,</span> <span class="n">mySD</span><span class="p">),</span> <span class="n">numData</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Normally distributed data&quot;</span><span class="p">);</span>
+<span class="n">scatter!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Histogram of normally distributed data&quot;</span><span class="p">);</span>
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_66_0.png" src="../_images/02-univariate-distributions_66_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="beta-distribution">
+<h2>Beta Distribution<a class="headerlink" href="#beta-distribution" title="Permalink to this headline">¶</a></h2>
+<p>The PDF of <strong>Beta distribution</strong> is</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+f(x, a, b)=\frac{Γ(a+b) x^{a-1}(1-x)^{b-1}}{Γ(a) Γ(b)}
+\end{equation}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(0≤ x ≤ 1\)</span> and <span class="math notranslate nohighlight">\(a&gt;0\)</span>, <span class="math notranslate nohighlight">\(b&gt;0\)</span>, <span class="math notranslate nohighlight">\(Γ\)</span> is the Gamma function, and <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> decide the shape of Beta PDF.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">x</span> <span class="o">=</span> <span class="kt">LinRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+
+<span class="n">αs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
+<span class="n">βs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="ss">:red</span><span class="p">,</span> <span class="ss">:blue</span><span class="p">,</span> <span class="ss">:green</span><span class="p">,</span> <span class="ss">:orange</span><span class="p">];</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;PDF of Beta Distribution&quot;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;CDF of Beta Distribution&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">cl</span><span class="p">)</span> <span class="o">∈</span> <span class="n">zip</span><span class="p">(</span><span class="n">αs</span><span class="p">,</span> <span class="n">βs</span><span class="p">,</span> <span class="n">colors</span><span class="p">)</span>
+    <span class="n">d_beta</span> <span class="o">=</span> <span class="n">Beta</span><span class="p">(</span><span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">);</span>
+    <span class="n">pdf_beta</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_beta</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">pdf_beta</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">cl</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&quot;α = </span><span class="si">$α</span><span class="s">, β = </span><span class="si">$β</span><span class="s">&quot;</span><span class="p">)</span>
+    <span class="n">axislegend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="ss">:ct</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="n">cdf_beta</span> <span class="o">=</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_beta</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">cdf_beta</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">cl</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&quot;α = </span><span class="si">$α</span><span class="s">, β = </span><span class="si">$β</span><span class="s">&quot;</span><span class="p">)</span>
+    <span class="n">axislegend</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="ss">:lt</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02-univariate-distributions_70_0.png" src="../_images/02-univariate-distributions_70_0.png" />
+</div>
+</div>
+<p>Beta distribution is mostly useful as <strong>prior distribution</strong> in Bayesian estimation, because it is bounded in <span class="math notranslate nohighlight">\([0, 1]\)</span>, that is perfect for modeling the <em>probability distribution of probabilities</em>. In Bayesian estimation, we only care about the proportion between prior and posterior, by adjusting <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> we can use Beta distribution to express any kinds of prior beliefs including normal, uniform, exponential distribution and etc.</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+f(x, a, b)∝ x^{a-1}(1-x)^{b-1}
+\end{equation}
+\]</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.7"
+        },
+        kernelOptions: {
+            kernelName: "julia-1.7",
+            path: "./probability"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.7'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="01-counting.html" title="previous page">Counting</a>
+    <a class='right-next' id="next-link" href="03-statistics.html" title="next page">Statistics</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By ivaquero<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

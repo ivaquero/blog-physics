@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Distribution &#8212; A Starter of Physics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://ivaquero.github.io/excss-physics/basics/p-distribution.html" />
+    <link rel="shortcut icon" href="../_static/logo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Correlation" href="p-correlation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">A Starter of Physics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   A Starter of Physics
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Probablity
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../probability/01-counting.html">
+   Counting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../probability/02-univariate-distributions.html">
+   Univariate Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../probability/03-statistics.html">
+   Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../probability/04-multivariate-distributions.html">
+   Multivariate Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../probability/05-transformations.html">
+   Transformations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../probability/06-conditional-probability.html">
+   Conditional Probability
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Basics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="p-correlation.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Distribution
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/basics/p-distribution.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ivaquero/excss-physics/master?urlpath=lab/tree/basics/p-distribution.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stacked-histogram">
+   Stacked Histogram
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#density">
+   Density
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#box">
+   Box
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="distribution">
+<h1>Distribution<a class="headerlink" href="#distribution" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">CairoMakie</span>
+<span class="k">using</span> <span class="n">AlgebraOfGraphics</span>
+<span class="k">using</span> <span class="n">DataFrames</span><span class="p">,</span> <span class="n">DataFramesMeta</span>
+<span class="k">using</span> <span class="n">CSV</span><span class="o">:</span> <span class="n">File</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="stacked-histogram">
+<h2>Stacked Histogram<a class="headerlink" href="#stacked-histogram" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">mpg</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s">&quot;../../data-df/mpg.csv&quot;</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">DataFrame</span><span class="p">;</span>
+<span class="n">mpg</span> <span class="o">|&gt;</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">first</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class="data-frame"><p>5 rows × 11 columns (omitted printing of 1 columns)</p><table class="data-frame"><thead><tr><th></th><th>manufacturer</th><th>model</th><th>displ</th><th>year</th><th>cyl</th><th>trans</th><th>drv</th><th>cty</th><th>hwy</th><th>fl</th></tr><tr><th></th><th title="String">String</th><th title="String">String</th><th title="Float64">Float64</th><th title="Int64">Int64</th><th title="Int64">Int64</th><th title="String">String</th><th title="String">String</th><th title="Int64">Int64</th><th title="Int64">Int64</th><th title="String">String</th></tr></thead><tbody><tr><th>1</th><td>audi</td><td>a4</td><td>1.8</td><td>1999</td><td>4</td><td>auto(l5)</td><td>f</td><td>18</td><td>29</td><td>p</td></tr><tr><th>2</th><td>audi</td><td>a4</td><td>1.8</td><td>1999</td><td>4</td><td>manual(m5)</td><td>f</td><td>21</td><td>29</td><td>p</td></tr><tr><th>3</th><td>audi</td><td>a4</td><td>2.0</td><td>2008</td><td>4</td><td>manual(m6)</td><td>f</td><td>20</td><td>31</td><td>p</td></tr><tr><th>4</th><td>audi</td><td>a4</td><td>2.0</td><td>2008</td><td>4</td><td>auto(av)</td><td>f</td><td>21</td><td>30</td><td>p</td></tr><tr><th>5</th><td>audi</td><td>a4</td><td>2.8</td><td>1999</td><td>6</td><td>auto(l5)</td><td>f</td><td>16</td><td>26</td><td>p</td></tr></tbody></table></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">mpg</span> <span class="o">|&gt;</span> <span class="n">names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11-element Vector{String}:
+ &quot;manufacturer&quot;
+ &quot;model&quot;
+ &quot;displ&quot;
+ &quot;year&quot;
+ &quot;cyl&quot;
+ &quot;trans&quot;
+ &quot;drv&quot;
+ &quot;cty&quot;
+ &quot;hwy&quot;
+ &quot;fl&quot;
+ &quot;class&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">classes</span> <span class="o">=</span> <span class="n">mpg</span><span class="o">.</span><span class="n">class</span> <span class="o">|&gt;</span> <span class="n">unique</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7-element Vector{String}:
+ &quot;compact&quot;
+ &quot;midsize&quot;
+ &quot;suv&quot;
+ &quot;2seater&quot;
+ &quot;minivan&quot;
+ &quot;pickup&quot;
+ &quot;subcompact&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span>
+    <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Stacked Histogram of displ colored by class&quot;</span><span class="p">);</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="o">∈</span> <span class="n">classes</span>
+    <span class="n">mpg_select</span> <span class="o">=</span> <span class="nd">@rsubset</span><span class="p">(</span><span class="n">mpg</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span>
+    <span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">mpg_select</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="ss">:displ</span><span class="p">];</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">strokewidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">strokecolor</span> <span class="o">=</span> <span class="ss">:black</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">c</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">xlims!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">))</span>
+<span class="n">ylims!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+<span class="n">axislegend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span><span class="ss">:rt</span><span class="p">)</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/p-distribution_6_0.png" src="../_images/p-distribution_6_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="density">
+<h2>Density<a class="headerlink" href="#density" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="o">∈</span> <span class="p">[</span><span class="s">&quot;compact&quot;</span><span class="p">,</span> <span class="s">&quot;suv&quot;</span><span class="p">,</span> <span class="s">&quot;minivan&quot;</span><span class="p">]</span>
+    <span class="n">mpg_select</span> <span class="o">=</span> <span class="nd">@rsubset</span><span class="p">(</span><span class="n">mpg</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span>
+    <span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">mpg_select</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="ss">:cty</span><span class="p">];</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">normalization</span> <span class="o">=</span> <span class="ss">:pdf</span><span class="p">,</span> <span class="n">strokewidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">strokecolor</span> <span class="o">=</span> <span class="ss">:black</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">c</span><span class="p">)</span>
+    <span class="n">density!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">mpg_select</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="ss">:cty</span><span class="p">])</span>
+<span class="k">end</span>
+
+<span class="n">xlims!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">35</span><span class="p">))</span>
+<span class="n">ylims!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">axislegend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span><span class="ss">:rt</span><span class="p">)</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/p-distribution_8_0.png" src="../_images/p-distribution_8_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="box">
+<h2>Box<a class="headerlink" href="#box" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span>
+
+<span class="c"># for c ∈ classes</span>
+<span class="c">#     mpg_select = @rsubset(mpg, :class == c)</span>
+<span class="c">#     boxplot(ax, mpg_select[:, :class], mpg_select[:, :cty], label = c)</span>
+<span class="c"># end</span>
+
+<span class="c"># fig</span>
+
+<span class="n">layers</span> <span class="o">=</span> <span class="n">visual</span><span class="p">(</span><span class="n">BoxPlot</span><span class="p">)</span>
+
+<span class="n">mpg</span> <span class="o">|&gt;</span> 
+    <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">data</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">mapping</span><span class="p">(</span><span class="ss">:class</span><span class="p">,</span> <span class="ss">:cty</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="ss">:class</span><span class="p">)</span> <span class="o">*</span> <span class="n">layers</span> <span class="o">|&gt;</span>
+    <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">draw!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/p-distribution_10_0.png" src="../_images/p-distribution_10_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.7"
+        },
+        kernelOptions: {
+            kernelName: "julia-1.7",
+            path: "./basics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.7'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="p-correlation.html" title="previous page">Correlation</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By ivaquero<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

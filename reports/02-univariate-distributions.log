@@ -1,0 +1,60 @@
+Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/mambaforge/base/envs/kaggle/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/opt/homebrew/Caskroom/mambaforge/base/envs/kaggle/lib/python3.9/site-packages/nbclient/client.py", line 1093, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/homebrew/Caskroom/mambaforge/base/envs/kaggle/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/homebrew/Caskroom/mambaforge/base/envs/kaggle/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/homebrew/Caskroom/mambaforge/base/envs/kaggle/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/opt/homebrew/Caskroom/mambaforge/base/envs/kaggle/lib/python3.9/site-packages/nbclient/client.py", line 559, in async_execute
+    await self.async_execute_cell(
+  File "/opt/homebrew/Caskroom/mambaforge/base/envs/kaggle/lib/python3.9/site-packages/nbclient/client.py", line 854, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/opt/homebrew/Caskroom/mambaforge/base/envs/kaggle/lib/python3.9/site-packages/nbclient/client.py", line 756, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+n = 50
+p = 0.3
+bad_credit_person = 1:51
+
+Random.seed!(42);
+d_binom = Binomial(n, p);
+pdf_binom = pdf(d_binom, bad_credit_person);
+
+fig = Figure(resolution=(500, 400))
+ax = Axis(
+    fig[1, 1],
+    xlabel="Number of Person who Has Bad Credit History",
+    ylabel="Probability",
+    title="The probability that from 1 to $n persons\n who have bad credit history"
+)
+
+lines!(ax, bad_credit_person, pdf_binom, color=:red)
+limits!(ax, 0, n, 0, 0.15)
+
+fig
+------------------
+
+MethodError: pdf(::Binomial{Float64}, ::UnitRange{Int64}) is ambiguous. Candidates:
+  pdf(d::Distribution{ArrayLikeVariate{N}}, x::AbstractArray{<:Real, M}) where {N, M} in Distributions at /Users/integzz/.julia/packages/Distributions/K939H/src/common.jl:249
+  pdf(d::UnivariateDistribution, X::AbstractArray) in Distributions at deprecated.jl:70
+Possible fix, define
+  pdf(::UnivariateDistribution, ::AbstractArray{T, M} where T<:Real) where M
+
+Stacktrace:
+ [1] top-level scope
+   @ In[6]:7
+ [2] eval
+   @ ./boot.jl:373 [inlined]
+ [3] include_string(mapexpr::typeof(REPL.softscope), mod::Module, code::String, filename::String)
+   @ Base ./loading.jl:1196
+LoadError: MethodError: pdf(::Binomial{Float64}, ::UnitRange{Int64}) is ambiguous. Candidates:
+  pdf(d::Distribution{ArrayLikeVariate{N}}, x::AbstractArray{<:Real, M}) where {N, M} in Distributions at /Users/integzz/.julia/packages/Distributions/K939H/src/common.jl:249
+  pdf(d::UnivariateDistribution, X::AbstractArray) in Distributions at deprecated.jl:70
+Possible fix, define
+  pdf(::UnivariateDistribution, ::AbstractArray{T, M} where T<:Real) where M
+
