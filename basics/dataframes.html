@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Conditional Probability &#8212; A Starter of Physics</title>
+    <title>&lt;no title&gt; &#8212; A Starter of Physics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -42,8 +42,6 @@
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -51,12 +49,11 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://ivaquero.github.io/excss-physics/probability/06-conditional-probability.html" />
+    <link rel="canonical" href="https://ivaquero.github.io/excss-physics/basics/dataframes.html" />
     <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="../basics/dataframes.html" />
-    <link rel="prev" title="Transformations" href="05-transformations.html" />
+    <link rel="prev" title="Conditional Probability" href="../probability/06-conditional-probability.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -105,34 +102,34 @@
   Probablity
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="01-counting.html">
+  <a class="reference internal" href="../probability/01-counting.html">
    Counting
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="02-univariate-distributions.html">
+  <a class="reference internal" href="../probability/02-univariate-distributions.html">
    Univariate Distributions
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="03-statistics.html">
+  <a class="reference internal" href="../probability/03-statistics.html">
    Statistics
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="04-multivariate-distributions.html">
+  <a class="reference internal" href="../probability/04-multivariate-distributions.html">
    Multivariate Distributions
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="05-transformations.html">
+  <a class="reference internal" href="../probability/05-transformations.html">
    Transformations
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../probability/06-conditional-probability.html">
    Conditional Probability
   </a>
  </li>
@@ -177,7 +174,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/probability/06-conditional-probability.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/basics/dataframes.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -202,7 +199,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ivaquero/excss-physics/master?urlpath=lab/tree/probability/06-conditional-probability.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ivaquero/excss-physics/master?urlpath=lab/tree/basics/dataframes.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -219,6 +216,14 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -226,68 +231,52 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Conditional Probability</h1>
+                <h1><no title></h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="conditional-probability">
-<h1>Conditional Probability<a class="headerlink" href="#conditional-probability" title="Permalink to this headline">¶</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">Combinatorics</span>
-<span class="k">using</span> <span class="n">Distributions</span><span class="p">,</span> <span class="n">Random</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
+  <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">DataFrames</span>
+<span class="k">using</span> <span class="n">CSV</span><span class="o">:</span> <span class="n">File</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">CairoMakie</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">cars</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s">&quot;../../data-stats/mtcars.csv&quot;</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">DataFrame</span><span class="p">;</span>
+<span class="n">cars</span> <span class="o">|&gt;</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">first</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class="data-frame"><p>5 rows × 13 columns (omitted printing of 3 columns)</p><table class="data-frame"><thead><tr><th></th><th>mpg</th><th>cyl</th><th>disp</th><th>hp</th><th>drat</th><th>wt</th><th>qsec</th><th>vs</th><th>am</th><th>gear</th></tr><tr><th></th><th title="Float64">Float64</th><th title="Int64">Int64</th><th title="Float64">Float64</th><th title="Int64">Int64</th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Int64">Int64</th><th title="Int64">Int64</th><th title="Int64">Int64</th></tr></thead><tbody><tr><th>1</th><td>4.58258</td><td>6</td><td>160.0</td><td>110</td><td>3.9</td><td>2.62</td><td>16.46</td><td>0</td><td>1</td><td>4</td></tr><tr><th>2</th><td>4.58258</td><td>6</td><td>160.0</td><td>110</td><td>3.9</td><td>2.875</td><td>17.02</td><td>0</td><td>1</td><td>4</td></tr><tr><th>3</th><td>4.77493</td><td>4</td><td>108.0</td><td>93</td><td>3.85</td><td>2.32</td><td>18.61</td><td>1</td><td>1</td><td>4</td></tr><tr><th>4</th><td>4.62601</td><td>6</td><td>258.0</td><td>110</td><td>3.08</td><td>3.215</td><td>19.44</td><td>1</td><td>0</td><td>3</td></tr><tr><th>5</th><td>4.32435</td><td>8</td><td>360.0</td><td>175</td><td>3.15</td><td>3.44</td><td>17.02</td><td>0</td><td>0</td><td>3</td></tr></tbody></table></div></div></div>
 </div>
-<p>The probability of A given B, so called <strong>conditional probability</strong>, defined as:</p>
-<div class="math notranslate nohighlight">
-\[
-\begin{equation}
-\frac{P(A∩ B)}{P(B)}=P(A|B)
-\end{equation}
-\]</div>
-<p>It is best to be demonstrated by a joint probability table, which is essentially a discrete numeric form of 3D distribution.</p>
-<p>From conditional probability it is straightforward to deduct <strong>multiplication law</strong>, simply rearrange the formula</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-P(A|B)P(B) = P(A ∩ B)\\
-P(B|A)P(A) = P(B ∩ A)
-\end{split}\]</div>
-<p>Two events <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are independent if</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-P(A|B)=P(A)\\
-P(B|A)=P(B)
-\end{split}\]</div>
-<p>Otherwise, the events are dependent.</p>
-<p>Then the <strong>independent multiplication law</strong> indicates</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-P(A)P(B)=P(A∩ B)\\
-P(B)P(A)=P(B∩ A)
-\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">altman</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s">&quot;../../data-stats/altman_12_6.txt&quot;</span><span class="p">,</span> <span class="n">delim</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">DataFrame</span><span class="p">;</span>
+<span class="n">altman</span> <span class="o">|&gt;</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">first</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class="data-frame"><p>5 rows × 3 columns</p><table class="data-frame"><thead><tr><th></th><th>14.3</th><th> 1</th><th> 1_1</th></tr><tr><th></th><th title="Float64">Float64</th><th title="Int64">Int64</th><th title="Int64">Int64</th></tr></thead><tbody><tr><th>1</th><td>14.0</td><td>1</td><td>1</td></tr><tr><th>2</th><td>14.8</td><td>1</td><td>1</td></tr><tr><th>3</th><td>13.6</td><td>1</td><td>2</td></tr><tr><th>4</th><td>13.6</td><td>1</td><td>2</td></tr><tr><th>5</th><td>13.8</td><td>1</td><td>2</td></tr></tbody></table></div></div></div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -303,7 +292,7 @@ P(B)P(A)=P(B∩ A)
         },
         kernelOptions: {
             kernelName: "julia-1.7",
-            path: "./probability"
+            path: "./basics"
         },
         predefinedOutput: true
     }
@@ -315,19 +304,12 @@ P(B)P(A)=P(B∩ A)
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="05-transformations.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../probability/06-conditional-probability.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Transformations</p>
+            <p class="prev-next-title">Conditional Probability</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="../basics/dataframes.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             
