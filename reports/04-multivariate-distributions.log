@@ -1,0 +1,82 @@
+Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/mambaforge/base/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/opt/homebrew/Caskroom/mambaforge/base/lib/python3.9/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/homebrew/Caskroom/mambaforge/base/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/homebrew/Caskroom/mambaforge/base/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/homebrew/Caskroom/mambaforge/base/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/opt/homebrew/Caskroom/mambaforge/base/lib/python3.9/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/opt/homebrew/Caskroom/mambaforge/base/lib/python3.9/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/homebrew/Caskroom/mambaforge/base/lib/python3.9/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+Random.seed!(42);
+mu_x = 0;
+sigma_x = 2;
+mu_y = 0;
+sigma_y = 2;
+
+d_mvnorm = MvNormal([mu_x, mu_y], [sigma_x 0; 0 sigma_y]);
+
+x = LinRange(-10, 10, 100);
+y = LinRange(-10, 10, 100);
+z = [pdf.(d_mvnorm, [i, j]) for i ∈ x, j ∈ y];
+
+fig = Figure(resolution = (1000, 600));
+ax = Axis3(
+    fig[1, 1],
+    xlabel = "X axis",
+    ylabel = "Y axis",
+    zlabel = "Z axis",
+    title = "Bivariate Normal Distribution",
+);
+
+surface!(ax, x, y, z);
+
+fig
+------------------
+
+MethodError: no method matching iterate(::FullNormal)
+[0mClosest candidates are:
+[0m  iterate([91m::Union{LinRange, StepRangeLen}[39m) at /Applications/Julia-1.7.app/Contents/Resources/julia/share/julia/base/range.jl:826
+[0m  iterate([91m::Union{LinRange, StepRangeLen}[39m, [91m::Integer[39m) at /Applications/Julia-1.7.app/Contents/Resources/julia/share/julia/base/range.jl:826
+[0m  iterate([91m::T[39m) where T<:Union{Base.KeySet{<:Any, <:Dict}, Base.ValueIterator{<:Dict}} at /Applications/Julia-1.7.app/Contents/Resources/julia/share/julia/base/dict.jl:695
+[0m  ...
+
+Stacktrace:
+  [1] copyto!(dest::Vector{Float64}, src::FullNormal)
+    @ Base ./abstractarray.jl:890
+  [2] _collect(cont::UnitRange{Int64}, itr::FullNormal, #unused#::Base.HasEltype, isz::Base.HasLength)
+    @ Base ./array.jl:655
+  [3] collect(itr::FullNormal)
+    @ Base ./array.jl:649
+  [4] broadcastable(x::FullNormal)
+    @ Base.Broadcast ./broadcast.jl:704
+  [5] broadcasted(::Function, ::FullNormal, ::Vector{Float64})
+    @ Base.Broadcast ./broadcast.jl:1300
+  [6] (::var"#3#4")(::Tuple{Float64, Float64})
+    @ Main ./none:0
+  [7] iterate
+    @ ./generator.jl:47 [inlined]
+  [8] collect(itr::Base.Generator{Base.Iterators.ProductIterator{Tuple{LinRange{Float64, Int64}, LinRange{Float64, Int64}}}, var"#3#4"})
+    @ Base ./array.jl:724
+  [9] top-level scope
+    @ In[3]:11
+ [10] eval
+    @ ./boot.jl:373 [inlined]
+ [11] include_string(mapexpr::typeof(REPL.softscope), mod::Module, code::String, filename::String)
+    @ Base ./loading.jl:1196
+LoadError: MethodError: no method matching iterate(::FullNormal)
+[0mClosest candidates are:
+[0m  iterate([91m::Union{LinRange, StepRangeLen}[39m) at /Applications/Julia-1.7.app/Contents/Resources/julia/share/julia/base/range.jl:826
+[0m  iterate([91m::Union{LinRange, StepRangeLen}[39m, [91m::Integer[39m) at /Applications/Julia-1.7.app/Contents/Resources/julia/share/julia/base/range.jl:826
+[0m  iterate([91m::T[39m) where T<:Union{Base.KeySet{<:Any, <:Dict}, Base.ValueIterator{<:Dict}} at /Applications/Julia-1.7.app/Contents/Resources/julia/share/julia/base/dict.jl:695
+[0m  ...
+
