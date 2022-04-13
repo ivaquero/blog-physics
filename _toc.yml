@@ -1,0 +1,29 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: README
+parts:
+  - caption: Linear Algebra
+    chapters:
+      - file: linalg/numerical_solution
+  - caption: System Dynamics
+    chapters:
+      - file: dynamics/numerical_solution
+  - caption: Probablity
+    chapters:
+      - file: probability/01-counting
+      - file: probability/02-univariate-distributions
+      - file: probability/03-statistics
+      - file: probability/04-multivariate-distributions
+      - file: probability/05-transformations
+      - file: probability/06-conditional-probability
+      # - file: probability/07-limit-theorems
+      # - file: probability/08-parameter-testing
+      # - file: probability/09-non-parameter-testing
+      # - file: probability/10-markov-chains
+      # - file: probability/11-poisson-processes
+      # - file: probability/12-survival-analysis
+  - caption: Basics
+    chapters:
+      - file: basics/dataframes
