@@ -37,21 +37,23 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://ivaquero.github.io/excss-physics/probability/01-counting.html" />
+    <link rel="canonical" href="https://ivaquero.github.io/blog-physics/probability/01-counting.html" />
     <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -202,7 +204,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ivaquero/excss-physics/master?urlpath=lab/tree/probability/01-counting.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ivaquero/blog-physics/master?urlpath=lab/tree/probability/01-counting.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -351,14 +353,14 @@
 <h1>Counting<a class="headerlink" href="#counting" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">Combinatorics</span><span class="p">,</span> <span class="n">DataStructures</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Combinatorics</span><span class="p">,</span><span class="w"> </span><span class="n">DataStructures</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">StatsBase</span><span class="p">,</span> <span class="n">Random</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">StatsBase</span><span class="p">,</span><span class="w"> </span><span class="n">Random</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -370,9 +372,9 @@
 <h2>Set Operations<a class="headerlink" href="#set-operations" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="o">⊂</span> <span class="o">=</span> <span class="n">issubset</span><span class="p">;</span>
-<span class="k">const</span> <span class="o">⊖</span> <span class="o">=</span> <span class="n">setdiff</span><span class="p">;</span>
-<span class="k">const</span> <span class="o">×</span> <span class="o">=</span> <span class="n">Iterators</span><span class="o">.</span><span class="n">product</span><span class="p">;</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="o">⊂</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">issubset</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="o">⊖</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">setdiff</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Iterators</span><span class="o">.</span><span class="n">product</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -383,17 +385,17 @@
 <p>Now define two sets, <span class="math notranslate nohighlight">\(a\)</span> is a <strong>superset</strong> of <span class="math notranslate nohighlight">\(b\)</span> (<span class="math notranslate nohighlight">\(a ⊇ b\)</span>), then <span class="math notranslate nohighlight">\(b\)</span> is called a <strong>subset</strong> of <span class="math notranslate nohighlight">\(a\)</span> (<span class="math notranslate nohighlight">\(b ⊆ a\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">([</span><span class="sc">&#39;♡&#39;</span><span class="p">,</span> <span class="sc">&#39;♧&#39;</span><span class="p">,</span> <span class="sc">&#39;♢&#39;</span><span class="p">]);</span>
-<span class="n">b</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">([</span><span class="sc">&#39;♡&#39;</span><span class="p">,</span> <span class="sc">&#39;♧&#39;</span><span class="p">]);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Set</span><span class="p">([</span><span class="sc">&#39;♡&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;♧&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;♢&#39;</span><span class="p">]);</span><span class="w"></span>
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Set</span><span class="p">([</span><span class="sc">&#39;♡&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;♧&#39;</span><span class="p">]);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">b</span> <span class="o">⊆</span> <span class="n">a</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">println</span>
-<span class="p">(</span><span class="n">a</span> <span class="o">⊆</span> <span class="n">a</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">println</span>
-<span class="p">(</span><span class="n">a</span> <span class="o">⊈</span> <span class="n">a</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">println</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">⊆</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
+<span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">⊆</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
+<span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">⊈</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -408,8 +410,8 @@ false
 <p>In this example, <span class="math notranslate nohighlight">\(a\)</span> is a <strong>proper superset</strong> of <span class="math notranslate nohighlight">\(b\)</span> denoted as <span class="math notranslate nohighlight">\(a ⊃ b\)</span>, <span class="math notranslate nohighlight">\(b\)</span> is a <strong>proper subset</strong> of <span class="math notranslate nohighlight">\(a\)</span> denoted as <span class="math notranslate nohighlight">\(b ⊂ a\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">b</span> <span class="o">⊊</span> <span class="n">a</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">println</span>
-<span class="p">(</span><span class="n">a</span> <span class="o">⊊</span> <span class="n">a</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">println</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">⊊</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
+<span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">⊊</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -422,8 +424,8 @@ false
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="n">a</span> <span class="o">∪</span> <span class="n">b</span><span class="p">)</span> <span class="o">==</span> <span class="n">a</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">println</span>
-<span class="p">((</span><span class="n">a</span> <span class="o">∩</span> <span class="n">b</span><span class="p">)</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">println</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="n">a</span><span class="w"> </span><span class="o">∪</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
+<span class="p">((</span><span class="n">a</span><span class="w"> </span><span class="o">∩</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -436,8 +438,8 @@ true
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">a</span> <span class="o">⊖</span> <span class="n">b</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">println</span>
-<span class="p">(</span><span class="n">b</span> <span class="o">⊖</span> <span class="n">a</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">println</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">⊖</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
+<span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">⊖</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -450,15 +452,15 @@ Set{Char}()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">([</span><span class="sc">&#39;♤&#39;</span><span class="p">,</span> <span class="sc">&#39;♡&#39;</span><span class="p">,</span> <span class="sc">&#39;♧&#39;</span><span class="p">]);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Set</span><span class="p">([</span><span class="sc">&#39;♤&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;♡&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;♧&#39;</span><span class="p">]);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">a</span> <span class="o">∪</span> <span class="n">c</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">println</span>
-<span class="p">(</span><span class="n">a</span> <span class="o">∩</span> <span class="n">c</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">println</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">∪</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
+<span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">∩</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -471,8 +473,8 @@ Set([&#39;♧&#39;, &#39;♡&#39;])
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">a</span> <span class="o">⊖</span> <span class="n">c</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">println</span>
-<span class="p">(</span><span class="n">c</span> <span class="o">⊖</span> <span class="n">a</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">println</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">⊖</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
+<span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">⊖</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -486,7 +488,7 @@ Set([&#39;♤&#39;])
 <p>The <strong>powerset</strong> is set contains all subsets, including the empty set and itself.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">vcat</span><span class="p">(</span><span class="n">a</span><span class="o">...</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">powerset</span> <span class="o">|&gt;</span> <span class="n">collect</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">vcat</span><span class="p">(</span><span class="n">a</span><span class="o">...</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">powerset</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">collect</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -519,15 +521,15 @@ P_N^n = \frac{N!}{(N-n)!}
 \end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">([</span><span class="sc">&#39;♡&#39;</span><span class="p">,</span> <span class="sc">&#39;♧&#39;</span><span class="p">,</span> <span class="sc">&#39;♢&#39;</span><span class="p">]);</span>
-<span class="n">b</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">([</span><span class="sc">&#39;♡&#39;</span><span class="p">,</span> <span class="sc">&#39;♧&#39;</span><span class="p">]);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Set</span><span class="p">([</span><span class="sc">&#39;♡&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;♧&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;♢&#39;</span><span class="p">]);</span><span class="w"></span>
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Set</span><span class="p">([</span><span class="sc">&#39;♡&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;♧&#39;</span><span class="p">]);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">comb</span> <span class="o">=</span> <span class="n">vcat</span><span class="p">(</span><span class="n">a</span><span class="o">...</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">combinations</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">collect</span> <span class="o">|&gt;</span> <span class="n">hcat</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">comb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vcat</span><span class="p">(</span><span class="n">a</span><span class="o">...</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">combinations</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">collect</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">hcat</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -542,7 +544,7 @@ P_N^n = \frac{N!}{(N-n)!}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">comb</span> <span class="o">|&gt;</span> <span class="n">size</span> <span class="o">|&gt;</span> <span class="n">prod</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">comb</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">prod</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -554,7 +556,7 @@ P_N^n = \frac{N!}{(N-n)!}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">perm</span> <span class="o">=</span> <span class="n">vcat</span><span class="p">(</span><span class="n">a</span><span class="o">...</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">permutations</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">collect</span> <span class="o">|&gt;</span> <span class="n">hcat</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">perm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vcat</span><span class="p">(</span><span class="n">a</span><span class="o">...</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">permutations</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">collect</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">hcat</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -572,7 +574,7 @@ P_N^n = \frac{N!}{(N-n)!}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">perm</span> <span class="o">|&gt;</span> <span class="n">size</span> <span class="o">|&gt;</span> <span class="n">prod</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">perm</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">prod</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -593,7 +595,7 @@ A × B = \{(a, b)∣ a∈ A\ {\text{ and }}\ b∈ B\}
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">product</span> <span class="o">=</span> <span class="n">a</span> <span class="o">×</span> <span class="n">b</span> <span class="o">|&gt;</span> <span class="n">collect</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">product</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">collect</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -608,7 +610,7 @@ A × B = \{(a, b)∣ a∈ A\ {\text{ and }}\ b∈ B\}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">product</span> <span class="o">|&gt;</span> <span class="n">size</span> <span class="o">|&gt;</span> <span class="n">prod</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">product</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">prod</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -626,15 +628,15 @@ A × B = \{(a, b)∣ a∈ A\ {\text{ and }}\ b∈ B\}
 <p>Dice rolling problem never gets old. To answer the question: <em>what is the probability of rolling an odd number</em>? We will show how to answer the question with set operations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">);</span>
-<span class="n">s2</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="mi">6</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">);</span><span class="w"></span>
+<span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="mi">6</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="o">/</span> <span class="n">length</span><span class="p">(</span><span class="n">s1</span><span class="p">))</span> <span class="o">|&gt;</span> <span class="n">println</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">s1</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -650,14 +652,14 @@ A × B = \{(a, b)∣ a∈ A\ {\text{ and }}\ b∈ B\}
 <h1>Two Dices Problem<a class="headerlink" href="#two-dices-problem" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">dice</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">)</span> <span class="o">×</span> <span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">);</span>
-<span class="n">dice_pair</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">Tuple</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Int64</span><span class="p">},</span><span class="kt">Int64</span><span class="p">}([]);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">dice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">);</span><span class="w"></span>
+<span class="n">dice_pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Dict</span><span class="p">{</span><span class="kt">Tuple</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Int64</span><span class="p">},</span><span class="kt">Int64</span><span class="p">}([]);</span><span class="w"></span>
 
-<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">∈</span> <span class="n">dice</span>
-    <span class="n">dice_pair</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span>
-<span class="k">end</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">∈</span><span class="w"> </span><span class="n">dice</span><span class="w"></span>
+<span class="w">    </span><span class="n">dice_pair</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 
-<span class="n">dice_pair</span> <span class="o">|&gt;</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">first</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">dice_pair</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">first</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -675,13 +677,13 @@ A × B = \{(a, b)∣ a∈ A\ {\text{ and }}\ b∈ B\}
 <p>Use <code class="docutils literal notranslate"><span class="pre">DefaultDict</span></code> from <code class="docutils literal notranslate"><span class="pre">DataStructures</span></code> package, it creates a dictionary which doesn’t report errors and suitable for counting.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">dice_count</span> <span class="o">=</span> <span class="kt">DefaultDict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Vector</span><span class="p">{</span><span class="kt">Tuple</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Int64</span><span class="p">}}}([]);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">dice_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">DefaultDict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Vector</span><span class="p">{</span><span class="kt">Tuple</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Int64</span><span class="p">}}}([]);</span><span class="w"></span>
 
-<span class="k">for</span> <span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span> <span class="o">∈</span> <span class="n">dice_pair</span>
-    <span class="n">push!</span><span class="p">(</span><span class="n">dice_count</span><span class="p">[</span><span class="n">count</span><span class="p">],</span> <span class="n">item</span><span class="p">)</span>
-<span class="k">end</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">)</span><span class="w"> </span><span class="o">∈</span><span class="w"> </span><span class="n">dice_pair</span><span class="w"></span>
+<span class="w">    </span><span class="n">push!</span><span class="p">(</span><span class="n">dice_count</span><span class="p">[</span><span class="n">count</span><span class="p">],</span><span class="w"> </span><span class="n">item</span><span class="p">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 
-<span class="n">dice_count</span>
+<span class="n">dice_count</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -705,7 +707,7 @@ A × B = \{(a, b)∣ a∈ A\ {\text{ and }}\ b∈ B\}
 <p>Create another dictionary holding all sums of dice and corresponding probabilities.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Float64</span><span class="p">;</span> <span class="n">d</span><span class="o">::</span><span class="kt">Int64</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">round</span><span class="p">(</span><span class="mi">100</span><span class="n">x</span><span class="p">;</span> <span class="n">digits</span> <span class="o">=</span> <span class="n">d</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Float64</span><span class="p">;</span><span class="w"> </span><span class="n">d</span><span class="o">::</span><span class="kt">Int64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="mi">100</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -717,8 +719,8 @@ A × B = \{(a, b)∣ a∈ A\ {\text{ and }}\ b∈ B\}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">ratio</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">;</span>
-<span class="kt">Dict</span><span class="p">(</span><span class="n">i</span> <span class="o">=&gt;</span> <span class="n">ratio</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">∈</span> <span class="n">dice_count</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">ratio</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">6</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">;</span><span class="w"></span>
+<span class="kt">Dict</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ratio</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">∈</span><span class="w"> </span><span class="n">dice_count</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -741,15 +743,15 @@ A × B = \{(a, b)∣ a∈ A\ {\text{ and }}\ b∈ B\}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">dice_prob</span><span class="p">(</span><span class="n">num</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span>
-    <span class="n">dice</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">)</span> <span class="o">×</span> <span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">)</span>
-    <span class="n">ocurrence</span> <span class="o">=</span> <span class="p">[</span><span class="n">sum</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="o">==</span> <span class="n">num</span> <span class="k">for</span> <span class="n">element</span> <span class="o">∈</span> <span class="n">dice</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">sum</span>
-    <span class="n">ratio</span> <span class="o">=</span> <span class="n">ocurrence</span> <span class="o">/</span> <span class="mi">6</span><span class="o">^</span><span class="mi">2</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">dice_prob</span><span class="p">(</span><span class="n">num</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">dice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">ocurrence</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">sum</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="o">∈</span><span class="w"> </span><span class="n">dice</span><span class="p">]</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">sum</span><span class="w"></span>
+<span class="w">    </span><span class="n">ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ocurrence</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">6</span><span class="o">^</span><span class="mi">2</span><span class="w"></span>
 
-    <span class="n">println</span><span class="p">(</span><span class="s">&quot;The probability of </span><span class="si">$num</span><span class="s"> while rolling two dices is </span><span class="si">$</span><span class="p">(</span><span class="n">ratio</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%&quot;</span><span class="p">)</span>
-<span class="k">end</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;The probability of </span><span class="si">$num</span><span class="s"> while rolling two dices is </span><span class="si">$</span><span class="p">(</span><span class="n">ratio</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="s">%&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 
-<span class="n">dice_prob</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">dice_prob</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -761,23 +763,23 @@ A × B = \{(a, b)∣ a∈ A\ {\text{ and }}\ b∈ B\}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">dice_prob_mc</span><span class="p">(</span><span class="n">num</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="mi">10</span><span class="o">^</span><span class="mi">6</span>
-    <span class="n">dice</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">)</span> <span class="o">×</span> <span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">)</span>
-    <span class="n">ocurrence</span> <span class="o">=</span> <span class="p">[</span><span class="n">sum</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="n">dice</span> <span class="o">|&gt;</span> <span class="n">collect</span><span class="p">))</span> <span class="o">==</span> <span class="n">num</span> <span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="n">N</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">sum</span>
-    <span class="n">ratio</span> <span class="o">=</span> <span class="n">ocurrence</span> <span class="o">/</span> <span class="n">N</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">dice_prob_mc</span><span class="p">(</span><span class="n">num</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="o">^</span><span class="mi">6</span><span class="w"></span>
+<span class="w">    </span><span class="n">dice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="kt">Set</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">ocurrence</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">sum</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="n">dice</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">collect</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">∈</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">N</span><span class="p">]</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">sum</span><span class="w"></span>
+<span class="w">    </span><span class="n">ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ocurrence</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">N</span><span class="w"></span>
 
-    <span class="n">println</span><span class="p">(</span><span class="s">&quot;Monte Carlo Estimation:&quot;</span><span class="p">)</span>
-    <span class="n">println</span><span class="p">(</span><span class="s">&quot;The probability of </span><span class="si">$num</span><span class="s"> while rolling two dices is </span><span class="si">$</span><span class="p">(</span><span class="n">ratio</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%&quot;</span><span class="p">)</span>
-<span class="k">end</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Monte Carlo Estimation:&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;The probability of </span><span class="si">$num</span><span class="s"> while rolling two dices is </span><span class="si">$</span><span class="p">(</span><span class="n">ratio</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="s">%&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 
-<span class="n">dice_prob_mc</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">dice_prob_mc</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Monte Carlo Estimation:
-The probability of 7 while rolling two dices is 16.66%
+The probability of 7 while rolling two dices is 16.68%
 </pre></div>
 </div>
 </div>
@@ -835,7 +837,7 @@ The probability of 7 while rolling two dices is 16.66%
     
       By ivaquero<br/>
     
-        &copy; Copyright 2021.<br/>
+        &copy; Copyright 2022.<br/>
   </p>
 </footer>
 </main>

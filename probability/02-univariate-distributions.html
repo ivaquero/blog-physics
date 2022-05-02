@@ -37,21 +37,23 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://ivaquero.github.io/excss-physics/probability/02-univariate-distributions.html" />
+    <link rel="canonical" href="https://ivaquero.github.io/blog-physics/probability/02-univariate-distributions.html" />
     <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -202,7 +204,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ivaquero/excss-physics/master?urlpath=lab/tree/probability/02-univariate-distributions.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ivaquero/blog-physics/master?urlpath=lab/tree/probability/02-univariate-distributions.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -471,22 +473,22 @@
 <h1>Univariate Distributions<a class="headerlink" href="#univariate-distributions" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">Combinatorics</span>
-<span class="k">using</span> <span class="n">Distributions</span><span class="p">,</span> <span class="n">Random</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Combinatorics</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="n">Distributions</span><span class="p">,</span><span class="w"> </span><span class="n">Random</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">DataFrames</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">DataFrames</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">CairoMakie</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">CairoMakie</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -538,7 +540,7 @@ f(k, n, p) = C_k^n p^kq^{n-k}
 <p>Start from a single number could be more intuitive, what’s probability that a personal banker to encounter exact <span class="math notranslate nohighlight">\(14\)</span> persons of bad credit history in a month?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Float64</span><span class="p">;</span> <span class="n">d</span><span class="o">::</span><span class="kt">Int64</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">round</span><span class="p">(</span><span class="mi">100</span><span class="n">x</span><span class="p">;</span> <span class="n">digits</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Float64</span><span class="p">;</span><span class="w"> </span><span class="n">d</span><span class="o">::</span><span class="kt">Int64</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="mi">100</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">digits</span><span class="o">=</span><span class="n">d</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -550,13 +552,13 @@ f(k, n, p) = C_k^n p^kq^{n-k}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>  <span class="c"># what is the prob that exact 14 ppl she met had bad credit history?</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">factorial</span><span class="p">(</span><span class="n">big</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">big</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)));</span>
-<span class="n">p</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>
-<span class="n">f_binomial</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">p</span><span class="o">^</span><span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="kt">Float64</span><span class="p">;</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w"></span>
+<span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">14</span><span class="p">;</span><span class="w">  </span><span class="c"># what is the prob that exact 14 ppl she met had bad credit history?</span><span class="w"></span>
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factorial</span><span class="p">(</span><span class="n">big</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">factorial</span><span class="p">(</span><span class="n">big</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">k</span><span class="p">)));</span><span class="w"></span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.3</span><span class="p">;</span><span class="w"></span>
+<span class="n">f_binomial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="o">^</span><span class="n">k</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="kt">Float64</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">print</span><span class="p">(</span><span class="s">&quot;The prob of meeting </span><span class="si">$k</span><span class="s"> persons who has bad credit history is </span><span class="si">$</span><span class="p">(</span><span class="n">f_binomial</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="s">&quot;The prob of meeting </span><span class="si">$k</span><span class="s"> persons who has bad credit history is </span><span class="si">$</span><span class="p">(</span><span class="n">f_binomial</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -568,26 +570,26 @@ f(k, n, p) = C_k^n p^kq^{n-k}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="n">p</span> <span class="o">=</span> <span class="mf">0.3</span>
-<span class="n">bad_credit_person</span> <span class="o">=</span> <span class="kt">UnitRange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">51</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="w"></span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.3</span><span class="w"></span>
+<span class="n">bad_credit_person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">UnitRange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">51</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">d_binom</span> <span class="o">=</span> <span class="n">Binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-<span class="n">pdf_binom</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_binom</span><span class="p">,</span> <span class="p">);</span>
+<span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">d_binom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<span class="n">pdf_binom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pdf</span><span class="p">(</span><span class="n">d_binom</span><span class="p">,</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span>
-    <span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;Number of Person who Has Bad Credit History&quot;</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;Probability&quot;</span><span class="p">,</span>
-    <span class="n">title</span><span class="o">=</span><span class="s">&quot;The probability that from 1 to </span><span class="si">$n</span><span class="s"> persons</span><span class="se">\n</span><span class="s"> who have bad credit history&quot;</span>
-<span class="p">)</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">))</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;Number of Person who Has Bad Credit History&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;Probability&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">title</span><span class="o">=</span><span class="s">&quot;The probability that from 1 to </span><span class="si">$n</span><span class="s"> persons</span><span class="se">\n</span><span class="s"> who have bad credit history&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">bad_credit_person</span><span class="p">,</span> <span class="n">pdf_binom</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="ss">:red</span><span class="p">)</span>
-<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">)</span>
+<span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">bad_credit_person</span><span class="p">,</span><span class="w"> </span><span class="n">pdf_binom</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="ss">:red</span><span class="p">)</span><span class="w"></span>
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.15</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">fig</span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -605,24 +607,24 @@ f(k, n, p) = C_k^n p^kq^{n-k}
 <p>If a stock trader trades <span class="math notranslate nohighlight">\(n\)</span> times a month, he has a <span class="math notranslate nohighlight">\(p%\)</span> chance of winning the trade, find out the probability that he can win less than <span class="math notranslate nohighlight">\(k\)</span> trades a month.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
-<span class="n">p</span> <span class="o">=</span> <span class="mf">0.55</span><span class="p">;</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
-<span class="n">k1</span><span class="p">,</span> <span class="n">k2</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">;</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"></span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.55</span><span class="p">;</span><span class="w"></span>
+<span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span><span class="w"></span>
+<span class="n">k1</span><span class="p">,</span><span class="w"> </span><span class="n">k2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">win_less</span> <span class="o">=</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_binom</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
-<span class="n">win_more</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_binom</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
-<span class="n">win_betw</span> <span class="o">=</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_binom</span><span class="p">,</span> <span class="n">k1</span><span class="p">)</span> <span class="o">-</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_binom</span><span class="p">,</span> <span class="n">k2</span><span class="p">);</span>
+<span class="n">win_less</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cdf</span><span class="p">(</span><span class="n">d_binom</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span><span class="w"></span>
+<span class="n">win_more</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cdf</span><span class="p">(</span><span class="n">d_binom</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span><span class="w"></span>
+<span class="n">win_betw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cdf</span><span class="p">(</span><span class="n">d_binom</span><span class="p">,</span><span class="w"> </span><span class="n">k1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cdf</span><span class="p">(</span><span class="n">d_binom</span><span class="p">,</span><span class="w"> </span><span class="n">k2</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">println</span><span class="p">(</span>
-    <span class="s">&quot;If a trader&#39;s winning rate is </span><span class="si">$</span><span class="p">(</span><span class="n">p</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%, the probability of winning less than </span><span class="si">$k</span><span class="s"> times is </span><span class="si">$</span><span class="p">(</span><span class="n">win_less</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="si">% i</span><span class="s">f he trades </span><span class="si">$n</span><span class="s"> per month.&quot;</span>
-<span class="p">)</span>
-<span class="n">println</span><span class="p">(</span>
-    <span class="s">&quot;If a trader&#39;s winning rate is </span><span class="si">$</span><span class="p">(</span><span class="n">p</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%, the probability of winning more than </span><span class="si">$k</span><span class="s"> times is </span><span class="si">$</span><span class="p">(</span><span class="n">win_more</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="si">% i</span><span class="s">f he trades </span><span class="si">$n</span><span class="s"> per month.&quot;</span>
-<span class="p">)</span>
-<span class="n">println</span><span class="p">(</span>
-    <span class="s">&quot;If a trader&#39;s winning rate is </span><span class="si">$</span><span class="p">(</span><span class="n">p</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%, the probability of winning between </span><span class="si">$k1</span><span class="s"> and </span><span class="si">$k2</span><span class="s"> times is </span><span class="si">$</span><span class="p">(</span><span class="n">win_betw</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="si">% i</span><span class="s">f he trades </span><span class="si">$n</span><span class="s"> per month.&quot;</span>
-<span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;If a trader&#39;s winning rate is </span><span class="si">$</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="s">%, the probability of winning less than </span><span class="si">$k</span><span class="s"> times is </span><span class="si">$</span><span class="p">(</span><span class="n">win_less</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="si">% i</span><span class="s">f he trades </span><span class="si">$n</span><span class="s"> per month.&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;If a trader&#39;s winning rate is </span><span class="si">$</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="s">%, the probability of winning more than </span><span class="si">$k</span><span class="s"> times is </span><span class="si">$</span><span class="p">(</span><span class="n">win_more</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="si">% i</span><span class="s">f he trades </span><span class="si">$n</span><span class="s"> per month.&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;If a trader&#39;s winning rate is </span><span class="si">$</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="s">%, the probability of winning between </span><span class="si">$k1</span><span class="s"> and </span><span class="si">$k2</span><span class="s"> times is </span><span class="si">$</span><span class="p">(</span><span class="n">win_betw</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="si">% i</span><span class="s">f he trades </span><span class="si">$n</span><span class="s"> per month.&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -637,22 +639,22 @@ If a trader&#39;s winning rate is 55.0%, the probability of winning between 14 a
 <p>What if the probability of wining changing from 0.1 to 0.8, what is the probability that he wins less than 6 trades, assuming every month he trades 20 times.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">win_rates</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">:</span><span class="mf">0.05</span><span class="o">:</span><span class="mf">0.81</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
-<span class="n">p_new</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="n">win_rates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span><span class="o">:</span><span class="mf">0.05</span><span class="o">:</span><span class="mf">0.81</span><span class="w"></span>
+<span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"></span>
+<span class="n">p_new</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">win_lesses</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}([]);</span>
+<span class="n">win_lesses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}([]);</span><span class="w"></span>
 
-<span class="k">for</span> <span class="n">win_rate</span> <span class="o">∈</span> <span class="n">win_rates</span>
-    <span class="n">d_binom2</span> <span class="o">=</span> <span class="n">Binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">win_rate</span><span class="p">)</span>
-    <span class="n">win_less</span> <span class="o">=</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_binom2</span><span class="p">,</span> <span class="n">p_new</span><span class="p">)</span>
-    <span class="n">push!</span><span class="p">(</span><span class="n">win_lesses</span><span class="p">,</span> <span class="n">win_less</span><span class="p">)</span>
-<span class="k">end</span>
+<span class="k">for</span><span class="w"> </span><span class="n">win_rate</span><span class="w"> </span><span class="o">∈</span><span class="w"> </span><span class="n">win_rates</span><span class="w"></span>
+<span class="w">    </span><span class="n">d_binom2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">win_rate</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">win_less</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cdf</span><span class="p">(</span><span class="n">d_binom2</span><span class="p">,</span><span class="w"> </span><span class="n">p_new</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">push!</span><span class="p">(</span><span class="n">win_lesses</span><span class="p">,</span><span class="w"> </span><span class="n">win_less</span><span class="p">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">win_rate</span><span class="o">=</span><span class="n">win_rates</span><span class="p">,</span> <span class="n">win_less</span><span class="o">=</span><span class="n">win_lesses</span><span class="p">);</span>
-<span class="n">df</span> <span class="o">|&gt;</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">first</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataFrame</span><span class="p">(</span><span class="n">win_rate</span><span class="o">=</span><span class="n">win_rates</span><span class="p">,</span><span class="w"> </span><span class="n">win_less</span><span class="o">=</span><span class="n">win_lesses</span><span class="p">);</span><span class="w"></span>
+<span class="n">df</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">first</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -662,19 +664,19 @@ If a trader&#39;s winning rate is 55.0%, the probability of winning between 14 a
 <p>According to the table above, if the trader has at least <span class="math notranslate nohighlight">\(60\%\)</span> winning rate, merely <span class="math notranslate nohighlight">\(0.6\%\)</span> probability that he wins less then <span class="math notranslate nohighlight">\(6\)</span> trades. Marginally higher winning rates are even important for traders in the short run.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This point means that if the winning rate is 40%,\n then the probability of winning less\n than 6 trades is 25%.</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This point means that if the winning rate is 40%,\n then the probability of winning less\n than 6 trades is 25%.</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span>
-    <span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;Winning Rate&quot;</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;Probabilit of winning Less than 6 trades&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">))</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;Winning Rate&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;Probabilit of winning Less than 6 trades&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="n">scatter!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">win_rates</span><span class="p">,</span> <span class="n">win_lesses</span><span class="p">)</span>
-<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">)</span>
+<span class="n">scatter!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">win_rates</span><span class="p">,</span><span class="w"> </span><span class="n">win_lesses</span><span class="p">)</span><span class="w"></span>
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w"> </span><span class="mf">0.85</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="w"> </span><span class="mf">1.05</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">fig</span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -686,33 +688,30 @@ If a trader&#39;s winning rate is 55.0%, the probability of winning between 14 a
 <h3>Binomial Random Variable Generator<a class="headerlink" href="#binomial-random-variable-generator" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-<span class="n">p</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>
-<span class="n">d_binom3</span> <span class="o">=</span> <span class="n">Binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-<span class="n">rvs_binom</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_binom3</span><span class="p">,</span> <span class="mi">10000</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"></span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.3</span><span class="p">;</span><span class="w"></span>
+<span class="n">d_binom3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<span class="n">rvs_binom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">d_binom3</span><span class="p">,</span><span class="w"> </span><span class="mi">10000</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Generated Binomial R.V.s&quot;</span><span class="p">);</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">));</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Generated Binomial R.V.s&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rvs_binom</span><span class="p">;</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">160</span><span class="p">);</span>
-<span class="n">vlines!</span><span class="p">(</span>
-    <span class="n">ax</span><span class="p">,</span>
-    <span class="mi">30</span><span class="p">,</span>
-    <span class="n">color</span> <span class="o">=</span> <span class="ss">:red</span><span class="p">,</span>
-    <span class="n">linestyle</span> <span class="o">=</span> <span class="ss">:dash</span><span class="p">,</span>
-    <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s">&quot;theoretical</span><span class="se">\n</span><span class="s">highest draw (p×n)&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">rvs_binom</span><span class="p">;</span><span class="w"> </span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">160</span><span class="p">);</span><span class="w"></span>
+<span class="n">vlines!</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">ax</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="mi">30</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:red</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">linestyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:dash</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;theoretical</span><span class="se">\n</span><span class="s">highest draw (p×n)&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
-<span class="n">axislegend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="ss">:rt</span><span class="p">,</span> <span class="n">labelsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">);</span>
-<span class="n">fig</span>
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
+<span class="n">axislegend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:rt</span><span class="p">,</span><span class="w"> </span><span class="n">labelsize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">);</span><span class="w"></span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/02-univariate-distributions_21_0.png" src="../_images/02-univariate-distributions_21_0.png" />
 </div>
 </div>
 <p>When <span class="math notranslate nohighlight">\(n → ∞\)</span> and <span class="math notranslate nohighlight">\(p → 0\)</span>，a binomial distribution approaches a <strong>Poisson distribution</strong> asymptotically, i.e. when <span class="math notranslate nohighlight">\(n\)</span> is large and <span class="math notranslate nohighlight">\(p\)</span> is small, we can use Poisson to approximate Binomial.</p>
@@ -742,18 +741,18 @@ P(x=2)=\frac{λ^ke^{-λ}}{k!}=\frac{1.2^2e^{-1.2}}{2!}
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">*</span> <span class="mi">5</span><span class="p">;</span>  <span class="c"># 20 times per month, and 5 years span</span>
-<span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">;</span>
-<span class="n">λ</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">n</span><span class="p">;</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">  </span><span class="c"># 20 times per month, and 5 years span</span><span class="w"></span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"></span>
+<span class="n">λ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">d_poisson</span> <span class="o">=</span> <span class="n">Poisson</span><span class="p">(</span><span class="n">λ</span><span class="p">);</span>
-<span class="n">pmf_poisson</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_poisson</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+<span class="n">d_poisson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Poisson</span><span class="p">(</span><span class="n">λ</span><span class="p">);</span><span class="w"></span>
+<span class="n">pmf_poisson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pdf</span><span class="p">(</span><span class="n">d_poisson</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">print</span><span class="p">(</span>
-    <span class="s">&quot;The probability of having </span><span class="si">$k</span><span class="s"> wiped-out shock(s) in a span of 5 years is </span><span class="si">$</span><span class="p">(</span><span class="n">pmf_poisson</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span>
-<span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;The probability of having </span><span class="si">$k</span><span class="s"> wiped-out shock(s) in a span of 5 years is </span><span class="si">$</span><span class="p">(</span><span class="n">pmf_poisson</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -767,12 +766,12 @@ P(x=2)=\frac{λ^ke^{-λ}}{k!}=\frac{1.2^2e^{-1.2}}{2!}
 <p>Similarly what’s the probability of having more than <span class="math notranslate nohighlight">\(k\)</span> times wiped-out?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-<span class="n">sf_poisson</span> <span class="o">=</span> <span class="n">ccdf</span><span class="p">(</span><span class="n">d_poisson</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="n">sf_poisson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ccdf</span><span class="p">(</span><span class="n">d_poisson</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">print</span><span class="p">(</span>
-    <span class="s">&quot;The probability of having more than </span><span class="si">$k</span><span class="s"> BS shock in 5 years is </span><span class="si">$</span><span class="p">(</span><span class="n">sf_poisson</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span>
-<span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;The probability of having more than </span><span class="si">$k</span><span class="s"> BS shock in 5 years is </span><span class="si">$</span><span class="p">(</span><span class="n">sf_poisson</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -787,15 +786,15 @@ P(x=2)=\frac{λ^ke^{-λ}}{k!}=\frac{1.2^2e^{-1.2}}{2!}
 <h3>Poisson Random Variable Generator<a class="headerlink" href="#poisson-random-variable-generator" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">rvs_poisson</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_poisson</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">rvs_poisson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">d_poisson</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Generated Poisson R.V.s&quot;</span><span class="p">);</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">));</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Generated Poisson R.V.s&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rvs_poisson</span><span class="p">;</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">);</span>
-<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
-<span class="n">fig</span>
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">rvs_poisson</span><span class="p">;</span><span class="w"> </span><span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">);</span><span class="w"></span>
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">6.5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">);</span><span class="w"></span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -817,15 +816,15 @@ f(k)=p(1-p)^k
 <p>If you are shooting basketball to the basket, your success rate is <span class="math notranslate nohighlight">\(30\%\)</span>, what’s the probability of first success after <span class="math notranslate nohighlight">\(k\)</span> times of trials?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-<span class="n">p</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>
-<span class="n">d_geom</span> <span class="o">=</span> <span class="n">Geometric</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-<span class="n">pmf_geom</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_geom</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.3</span><span class="p">;</span><span class="w"></span>
+<span class="n">d_geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Geometric</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<span class="n">pmf_geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pdf</span><span class="p">(</span><span class="n">d_geom</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">print</span><span class="p">(</span>
-    <span class="s">&quot;The probability of observing exact </span><span class="si">$k</span><span class="s"> times of failures trials before first success is </span><span class="si">$</span><span class="p">(</span><span class="n">pmf_geom</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span>
-<span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;The probability of observing exact </span><span class="si">$k</span><span class="s"> times of failures trials before first success is </span><span class="si">$</span><span class="p">(</span><span class="n">pmf_geom</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -838,11 +837,11 @@ f(k)=p(1-p)^k
 <p>Again, CDF could answer the a question: <em>What’s the probability of observing <span class="math notranslate nohighlight">\(k\)</span> or less than <span class="math notranslate nohighlight">\(k\)</span> times of failure before the first success?</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">cdf_geom</span> <span class="o">=</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_geom</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">cdf_geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cdf</span><span class="p">(</span><span class="n">d_geom</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">print</span><span class="p">(</span>
-    <span class="s">&quot;The probability of observing </span><span class="si">$k</span><span class="s"> or fewer than </span><span class="si">$k</span><span class="s"> times of failure before a first success is </span><span class="si">$</span><span class="p">(</span><span class="n">cdf_geom</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">.&quot;</span>
-<span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;The probability of observing </span><span class="si">$k</span><span class="s"> or fewer than </span><span class="si">$k</span><span class="s"> times of failure before a first success is </span><span class="si">$</span><span class="p">(</span><span class="n">cdf_geom</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="s">.&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -854,15 +853,15 @@ f(k)=p(1-p)^k
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">rvs_geom</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_geom</span><span class="p">,</span> <span class="mi">10000</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">rvs_geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">d_geom</span><span class="p">,</span><span class="w"> </span><span class="mi">10000</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Generated Geometric R.V.s&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">))</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Generated Geometric R.V.s&quot;</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rvs_geom</span><span class="p">;</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span>
-<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">20.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3100</span><span class="p">)</span>
-<span class="n">fig</span>
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">rvs_geom</span><span class="p">;</span><span class="w"> </span><span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span><span class="w"></span>
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">20.5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">3100</span><span class="p">)</span><span class="w"></span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -887,17 +886,17 @@ f(x) =\frac{{K\choose k} {N-K \choose n-k}}{{N\choose n}}
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-<span class="n">K</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-<span class="n">d_hgeom</span> <span class="o">=</span> <span class="n">Hypergeometric</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-<span class="n">pmf_hgeom</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_hgeom</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="n">K</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"></span>
+<span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"></span>
+<span class="n">d_hgeom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Hypergeometric</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">K</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<span class="n">pmf_hgeom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pdf</span><span class="p">(</span><span class="n">d_hgeom</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">print</span><span class="p">(</span>
-    <span class="s">&quot;The probability of getting </span><span class="si">$k</span><span class="s"> drug stashers by taking </span><span class="si">$n</span><span class="s"> persons away is </span><span class="si">$</span><span class="p">(</span><span class="n">pmf_hgeom</span> <span class="o">|&gt;</span> <span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span>
-<span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;The probability of getting </span><span class="si">$k</span><span class="s"> drug stashers by taking </span><span class="si">$n</span><span class="s"> persons away is </span><span class="si">$</span><span class="p">(</span><span class="n">pmf_hgeom</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="s">%.&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -911,15 +910,15 @@ f(x) =\frac{{K\choose k} {N-K \choose n-k}}{{N\choose n}}
 <p>It can be interpreted as: if 100 persons in the building, 20 are drug stasher, take 5 out of 100. The probability of getting from 1 to 5 drug stashers, is shown in the chart. As we can see it is nearly impossible to get 4 or 5 drugs stasher. But getting one is the most possible outcome</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">rvs_hgeom</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_hgeom</span><span class="p">,</span> <span class="mi">10000</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">rvs_hgeom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">d_hgeom</span><span class="p">,</span><span class="w"> </span><span class="mi">10000</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Generated Hypergeometric R.V.s&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">))</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Generated Hypergeometric R.V.s&quot;</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rvs_hgeom</span><span class="p">;</span> <span class="n">normalization</span><span class="o">=</span><span class="ss">:pdf</span><span class="p">,</span> <span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span>
-<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
-<span class="n">fig</span>
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">rvs_hgeom</span><span class="p">;</span><span class="w"> </span><span class="n">normalization</span><span class="o">=</span><span class="ss">:pdf</span><span class="p">,</span><span class="w"> </span><span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span><span class="w"></span>
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">4.5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5</span><span class="p">)</span><span class="w"></span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -933,18 +932,18 @@ f(x) =\frac{{K\choose k} {N-K \choose n-k}}{{N\choose n}}
 <p>Rolling a die is the simplest <strong>discrete uniform distribution</strong> generator from <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(6\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">l</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">;</span>
-<span class="n">d_uniform</span> <span class="o">=</span> <span class="n">Uniform</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span>
-<span class="n">rvs_uniform</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_uniform</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w"></span>
+<span class="n">d_uniform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Uniform</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">);</span><span class="w"></span>
+<span class="n">rvs_uniform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">d_uniform</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Discrete Uniform Frequency Distribution&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">))</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Discrete Uniform Frequency Distribution&quot;</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rvs_uniform</span><span class="p">;</span> <span class="n">bins</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span>
-<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">rvs_uniform</span><span class="p">;</span><span class="w"> </span><span class="n">bins</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span><span class="w"></span>
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">7.5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">fig</span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -971,18 +970,18 @@ f(x)=\frac{1}{b-a}
 <p>And its r.v. generator is one of the most commonly used function in NumPy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">l</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">;</span>
-<span class="n">d_uniform</span> <span class="o">=</span> <span class="n">Uniform</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span>
-<span class="n">rvs_uniform</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_uniform</span><span class="p">,</span> <span class="mi">10000</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="n">d_uniform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Uniform</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">);</span><span class="w"></span>
+<span class="n">rvs_uniform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">d_uniform</span><span class="p">,</span><span class="w"> </span><span class="mi">10000</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Continous Uniform Frequency Distribution&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">))</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Continous Uniform Frequency Distribution&quot;</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rvs_uniform</span><span class="p">;</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">normalization</span><span class="o">=</span><span class="ss">:pdf</span><span class="p">,</span> <span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span>
-<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">rvs_uniform</span><span class="p">;</span><span class="w"> </span><span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="n">normalization</span><span class="o">=</span><span class="ss">:pdf</span><span class="p">,</span><span class="w"> </span><span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span><span class="w"></span>
+<span class="n">limits!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="w"> </span><span class="mf">1.05</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">fig</span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -994,15 +993,15 @@ f(x)=\frac{1}{b-a}
 <h3>CDF and PDF of Continuous Uniform Distribution<a class="headerlink" href="#cdf-and-pdf-of-continuous-uniform-distribution" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">plot_prob</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf</span><span class="o">::</span><span class="kt">Vector</span><span class="p">,</span> <span class="n">cdf</span><span class="o">::</span><span class="kt">Vector</span><span class="p">,</span> <span class="n">title</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;PDF of </span><span class="si">$title</span><span class="s"> Distribution&quot;</span><span class="p">);</span>
-    <span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">pdf</span><span class="p">);</span>
-    
-    <span class="n">ax2</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;CDF of </span><span class="si">$title</span><span class="s"> Distribution&quot;</span><span class="p">);</span>
-    <span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">cdf</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">fig</span>
-<span class="k">end</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">plot_prob</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">pdf</span><span class="o">::</span><span class="kt">Vector</span><span class="p">,</span><span class="w"> </span><span class="n">cdf</span><span class="o">::</span><span class="kt">Vector</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="o">=</span><span class="s">&quot;PDF of </span><span class="si">$title</span><span class="s"> Distribution&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">pdf</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">ax2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="o">=</span><span class="s">&quot;CDF of </span><span class="si">$title</span><span class="s"> Distribution&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">cdf</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">fig</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1014,12 +1013,12 @@ f(x)=\frac{1}{b-a}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">unif_x</span> <span class="o">=</span> <span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mf">.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">unif_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mf">.2</span><span class="p">,</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">unif_pdf</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_uniform</span><span class="p">,</span> <span class="n">unif_x</span><span class="p">)</span>
-<span class="n">unif_cdf</span> <span class="o">=</span> <span class="n">cdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_uniform</span><span class="p">,</span> <span class="n">unif_x</span><span class="p">)</span>
+<span class="n">unif_pdf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_uniform</span><span class="p">,</span><span class="w"> </span><span class="n">unif_x</span><span class="p">)</span><span class="w"></span>
+<span class="n">unif_cdf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_uniform</span><span class="p">,</span><span class="w"> </span><span class="n">unif_x</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">plot_prob</span><span class="p">(</span><span class="n">unif_x</span><span class="p">,</span> <span class="n">unif_pdf</span><span class="p">,</span> <span class="n">unif_cdf</span><span class="p">,</span> <span class="s">&quot;Continous Uniform&quot;</span><span class="p">)</span>
+<span class="n">plot_prob</span><span class="p">(</span><span class="n">unif_x</span><span class="p">,</span><span class="w"> </span><span class="n">unif_pdf</span><span class="p">,</span><span class="w"> </span><span class="n">unif_cdf</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Continous Uniform&quot;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1039,15 +1038,15 @@ f(x)=\frac{1}{σ \sqrt{2 π}} e^{-\frac{1}{2}\left(\frac{x-μ}{σ}\right)^{2}}
 <p>Below are the plots of CDF and PDF.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">μ</span><span class="p">,</span> <span class="n">σ</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">;</span>
-<span class="n">norm_x</span> <span class="o">=</span> <span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">μ</span><span class="p">,</span><span class="w"> </span><span class="n">σ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="n">norm_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">d_normal</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">μ</span><span class="p">,</span> <span class="n">σ</span><span class="p">);</span>
-<span class="n">norm_pdf</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_normal</span><span class="p">,</span> <span class="n">norm_x</span><span class="p">);</span>
-<span class="n">norm_cdf</span> <span class="o">=</span> <span class="n">cdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_normal</span><span class="p">,</span> <span class="n">norm_x</span><span class="p">);</span>
+<span class="n">d_normal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Normal</span><span class="p">(</span><span class="n">μ</span><span class="p">,</span><span class="w"> </span><span class="n">σ</span><span class="p">);</span><span class="w"></span>
+<span class="n">norm_pdf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_normal</span><span class="p">,</span><span class="w"> </span><span class="n">norm_x</span><span class="p">);</span><span class="w"></span>
+<span class="n">norm_cdf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_normal</span><span class="p">,</span><span class="w"> </span><span class="n">norm_x</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">plot_prob</span><span class="p">(</span><span class="n">norm_x</span><span class="p">,</span> <span class="n">norm_pdf</span><span class="p">,</span> <span class="n">norm_cdf</span><span class="p">,</span> <span class="s">&quot;Normal&quot;</span><span class="p">)</span>
+<span class="n">plot_prob</span><span class="p">(</span><span class="n">norm_x</span><span class="p">,</span><span class="w"> </span><span class="n">norm_pdf</span><span class="p">,</span><span class="w"> </span><span class="n">norm_cdf</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Normal&quot;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1057,30 +1056,30 @@ f(x)=\frac{1}{σ \sqrt{2 π}} e^{-\frac{1}{2}\left(\frac{x-μ}{σ}\right)^{2}}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">μ</span><span class="p">,</span> <span class="n">σ</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">;</span>
-<span class="n">d_normal2</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">μ</span><span class="p">,</span> <span class="n">σ</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">μ</span><span class="p">,</span><span class="w"> </span><span class="n">σ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"></span>
+<span class="n">d_normal2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Normal</span><span class="p">(</span><span class="n">μ</span><span class="p">,</span><span class="w"> </span><span class="n">σ</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">norm_x2</span> <span class="o">=</span> <span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
-<span class="n">norm_pdf</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="n">norm_x2</span><span class="p">)</span>
-<span class="n">norm_cdf</span> <span class="o">=</span> <span class="n">cdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="n">norm_x2</span><span class="p">)</span>
+<span class="n">norm_x2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">)</span><span class="w"></span>
+<span class="n">norm_pdf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span><span class="w"> </span><span class="n">norm_x2</span><span class="p">)</span><span class="w"></span>
+<span class="n">norm_cdf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span><span class="w"> </span><span class="n">norm_x2</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">xlabel</span> <span class="o">=</span> <span class="s">&quot;X&quot;</span><span class="p">,</span> <span class="n">ylabel</span> <span class="o">=</span> <span class="s">&quot;PDF(X)&quot;</span><span class="p">);</span>
-<span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">norm_x2</span><span class="p">,</span> <span class="n">norm_pdf</span><span class="p">);</span>
-<span class="n">band!</span><span class="p">(</span><span class="n">norm_x2</span><span class="p">[</span><span class="n">norm_x2</span><span class="o">.≤</span><span class="n">μ</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">norm_pdf</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="n">argmax</span><span class="p">(</span><span class="n">norm_pdf</span><span class="p">)],</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;#2E86C3&quot;</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">))</span>
-<span class="n">text!</span><span class="p">(</span>
-    <span class="s">&quot;CDF(x)&quot;</span><span class="p">,</span>
-    <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="n">μ</span> <span class="o">-</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="n">μ</span><span class="p">)),</span>
-    <span class="n">color</span> <span class="o">=</span> <span class="ss">:white</span><span class="p">,</span>
-    <span class="n">textsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">));</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">xlabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;X&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PDF(X)&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">norm_x2</span><span class="p">,</span><span class="w"> </span><span class="n">norm_pdf</span><span class="p">);</span><span class="w"></span>
+<span class="n">band!</span><span class="p">(</span><span class="n">norm_x2</span><span class="p">[</span><span class="n">norm_x2</span><span class="o">.≤</span><span class="n">μ</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">norm_pdf</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="n">argmax</span><span class="p">(</span><span class="n">norm_pdf</span><span class="p">)],</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;#2E86C3&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.7</span><span class="p">))</span><span class="w"></span>
+<span class="n">text!</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;CDF(x)&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">μ</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w"> </span><span class="mf">0.25</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pdf</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span><span class="w"> </span><span class="n">μ</span><span class="p">)),</span><span class="w"></span>
+<span class="w">    </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:white</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">textsize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">xlabel</span> <span class="o">=</span> <span class="s">&quot;X&quot;</span><span class="p">,</span> <span class="n">ylabel</span> <span class="o">=</span> <span class="s">&quot;CDF(X)&quot;</span><span class="p">);</span>
-<span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">norm_x2</span><span class="p">,</span> <span class="n">norm_cdf</span><span class="p">);</span>
-<span class="n">scatter!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="p">[</span><span class="n">μ</span><span class="p">],</span> <span class="p">[</span><span class="n">cdf</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="n">μ</span><span class="p">)],</span> <span class="n">color</span> <span class="o">=</span> <span class="ss">:red</span><span class="p">);</span>
-<span class="n">vlines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="ss">:dash</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;#2E86C3&quot;</span><span class="p">)</span>
-<span class="n">fig</span>
+<span class="n">ax2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">xlabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;X&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;CDF(X)&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span><span class="w"> </span><span class="n">norm_x2</span><span class="p">,</span><span class="w"> </span><span class="n">norm_cdf</span><span class="p">);</span><span class="w"></span>
+<span class="n">scatter!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">μ</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="n">cdf</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span><span class="w"> </span><span class="n">μ</span><span class="p">)],</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:red</span><span class="p">);</span><span class="w"></span>
+<span class="n">vlines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">linestyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:dash</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#2E86C3&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1092,38 +1091,38 @@ f(x)=\frac{1}{σ \sqrt{2 π}} e^{-\frac{1}{2}\left(\frac{x-μ}{σ}\right)^{2}}
 <h3>Inverse Normal CDF<a class="headerlink" href="#inverse-normal-cdf" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">norm_95_r</span> <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="mf">.975</span><span class="p">);</span>
-<span class="n">norm_95_l</span> <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="mf">.025</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">norm_95_r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quantile</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span><span class="w"> </span><span class="mf">.975</span><span class="p">);</span><span class="w"></span>
+<span class="n">norm_95_l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quantile</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span><span class="w"> </span><span class="mf">.025</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">);</span><span class="w"></span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">xl</span> <span class="o">=</span> <span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">norm_95_l</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
-<span class="n">yl</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="n">xl</span><span class="p">);</span>
-<span class="n">xr</span> <span class="o">=</span> <span class="kt">LinRange</span><span class="p">(</span><span class="n">norm_95_r</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
-<span class="n">yr</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="n">xr</span><span class="p">);</span>
+<span class="n">xl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">norm_95_l</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span><span class="w"></span>
+<span class="n">yl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span><span class="w"> </span><span class="n">xl</span><span class="p">);</span><span class="w"></span>
+<span class="n">xr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="n">norm_95_r</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span><span class="w"></span>
+<span class="n">yr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span><span class="w"> </span><span class="n">xr</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Normal Distribution and 2.5% Shaded Area&quot;</span><span class="p">);</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">));</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Normal Distribution and 2.5% Shaded Area&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">lines!</span><span class="p">(</span>
-    <span class="n">ax</span><span class="p">,</span>
-    <span class="n">x</span><span class="p">,</span>
-    <span class="n">y</span><span class="p">,</span>
-    <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;#CC4845&quot;</span><span class="p">,</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s">&quot;PDF of Normal Distribution&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">lines!</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">ax</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">x</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">y</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#CC4845&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PDF of Normal Distribution&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="n">band!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;#2E86C3&quot;</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">))</span>
-<span class="n">band!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">xl</span><span class="p">,</span> <span class="n">yl</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;#2E86C3&quot;</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">))</span>
-<span class="n">band!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">xr</span><span class="p">,</span> <span class="n">yr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;#2E86C3&quot;</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">))</span>
+<span class="n">band!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;#2E86C3&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.7</span><span class="p">))</span><span class="w"></span>
+<span class="n">band!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">xl</span><span class="p">,</span><span class="w"> </span><span class="n">yl</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;#2E86C3&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p">))</span><span class="w"></span>
+<span class="n">band!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">xr</span><span class="p">,</span><span class="w"> </span><span class="n">yr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;#2E86C3&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p">))</span><span class="w"></span>
 
-<span class="n">text!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s">&quot;95%&quot;</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">.4</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="ss">:white</span><span class="p">)</span>
-<span class="n">text!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s">&quot;2.5%&quot;</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.7</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="ss">:white</span><span class="p">)</span>
-<span class="n">text!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s">&quot;2.5%&quot;</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="ss">:white</span><span class="p">)</span>
+<span class="n">text!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;95%&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="mf">.4</span><span class="p">,</span><span class="w"> </span><span class="mf">0.15</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:white</span><span class="p">)</span><span class="w"></span>
+<span class="n">text!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2.5%&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="mf">1.7</span><span class="p">,</span><span class="w"> </span><span class="mf">0.015</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:white</span><span class="p">)</span><span class="w"></span>
+<span class="n">text!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2.5%&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span><span class="w"> </span><span class="mf">0.015</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:white</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">fig</span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1136,13 +1135,13 @@ f(x)=\frac{1}{σ \sqrt{2 π}} e^{-\frac{1}{2}\left(\frac{x-μ}{σ}\right)^{2}}
 <h3>Normal Random Variable Generator<a class="headerlink" href="#normal-random-variable-generator" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">rvs_norm</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">rvs_norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">d_normal2</span><span class="p">,</span><span class="w"> </span><span class="mi">5000</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Normal Frequency Distribution&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">));</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Normal Frequency Distribution&quot;</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rvs_norm</span><span class="p">;</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">normalization</span><span class="o">=</span><span class="ss">:pdf</span><span class="p">,</span> <span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span>
-<span class="n">fig</span>
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">rvs_norm</span><span class="p">;</span><span class="w"> </span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">normalization</span><span class="o">=</span><span class="ss">:pdf</span><span class="p">,</span><span class="w"> </span><span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span><span class="w"></span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1156,43 +1155,43 @@ f(x)=\frac{1}{σ \sqrt{2 π}} e^{-\frac{1}{2}\left(\frac{x-μ}{σ}\right)^{2}}
 <h2>Different Representations<a class="headerlink" href="#different-representations" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="o">×</span> <span class="o">=</span> <span class="n">Iterators</span><span class="o">.</span><span class="n">product</span><span class="p">;</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Iterators</span><span class="o">.</span><span class="n">product</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span><span class="o">:</span><span class="mf">0.1</span><span class="o">:</span><span class="mi">10</span>
-<span class="n">x2</span> <span class="o">=</span> <span class="mi">0</span><span class="o">:</span><span class="mf">0.001</span><span class="o">:</span><span class="mi">1</span>
-<span class="n">d_norm</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">pdf_norm</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_norm</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">10</span><span class="o">:</span><span class="mf">0.1</span><span class="o">:</span><span class="mi">10</span><span class="w"></span>
+<span class="n">x2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="mf">0.001</span><span class="o">:</span><span class="mi">1</span><span class="w"></span>
+<span class="n">d_norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="n">pdf_norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_norm</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">));</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;PDF&quot;</span><span class="p">);</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="w"> </span><span class="mi">600</span><span class="p">));</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PDF&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">pdf_norm</span><span class="p">);</span>
-<span class="n">xlims!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]);</span>
+<span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">pdf_norm</span><span class="p">);</span><span class="w"></span>
+<span class="n">xlims!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">]);</span><span class="w"></span>
 
-<span class="n">inds</span> <span class="o">=</span> <span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">×</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">|&gt;</span> <span class="n">collect</span><span class="p">;</span>
-<span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">cdf</span><span class="p">,</span> <span class="n">quantile</span><span class="p">,</span> <span class="n">ccdf</span><span class="p">,</span> <span class="n">cquantile</span><span class="p">]</span>
-<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;cdf&quot;</span><span class="p">,</span> <span class="s">&quot;ppf&quot;</span><span class="p">,</span> <span class="s">&quot;sf&quot;</span><span class="p">,</span> <span class="s">&quot;isf&quot;</span><span class="p">]</span>
+<span class="n">inds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">collect</span><span class="p">;</span><span class="w"></span>
+<span class="n">funcs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">cdf</span><span class="p">,</span><span class="w"> </span><span class="n">quantile</span><span class="p">,</span><span class="w"> </span><span class="n">ccdf</span><span class="p">,</span><span class="w"> </span><span class="n">cquantile</span><span class="p">]</span><span class="w"></span>
+<span class="n">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;cdf&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ppf&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sf&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;isf&quot;</span><span class="p">]</span><span class="w"></span>
 
-<span class="k">for</span> <span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="o">∈</span> <span class="n">zip</span><span class="p">(</span><span class="n">inds</span><span class="p">,</span> <span class="n">funcs</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
-    <span class="n">ax2</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="n">ind</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ind</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
-    <span class="k">if</span> <span class="n">ind</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span>
-        <span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">func</span><span class="o">.</span><span class="p">(</span><span class="n">d_norm</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
-        <span class="n">xlims!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
-        <span class="n">ax2</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">name</span>
-    <span class="k">else</span>
-        <span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">func</span><span class="o">.</span><span class="p">(</span><span class="n">d_norm</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-        <span class="n">xlims!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-        <span class="n">ax2</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">name</span>
-    <span class="k">end</span>
-<span class="k">end</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">ind</span><span class="p">,</span><span class="w"> </span><span class="n">func</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">∈</span><span class="w"> </span><span class="n">zip</span><span class="p">(</span><span class="n">inds</span><span class="p">,</span><span class="w"> </span><span class="n">funcs</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">ax2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="n">ind</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">ind</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">ind</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">        </span><span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">func</span><span class="o">.</span><span class="p">(</span><span class="n">d_norm</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="n">xlims!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">])</span><span class="w"></span>
+<span class="w">        </span><span class="n">ax2</span><span class="o">.</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">        </span><span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">func</span><span class="o">.</span><span class="p">(</span><span class="n">d_norm</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="n">xlims!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="w"></span>
+<span class="w">        </span><span class="n">ax2</span><span class="o">.</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 
-<span class="n">fig</span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1205,17 +1204,17 @@ f(x)=\frac{1}{σ \sqrt{2 π}} e^{-\frac{1}{2}\left(\frac{x-μ}{σ}\right)^{2}}
 <h2>Shifted distribution<a class="headerlink" href="#shifted-distribution" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span><span class="o">:</span><span class="mf">0.1</span><span class="o">:</span><span class="mi">15</span><span class="p">;</span>
-<span class="n">myMean</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-<span class="n">mySD</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">Normal</span><span class="p">(</span><span class="n">myMean</span><span class="p">,</span> <span class="n">mySD</span><span class="p">),</span> <span class="n">x</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">5</span><span class="o">:</span><span class="mf">0.1</span><span class="o">:</span><span class="mi">15</span><span class="p">;</span><span class="w"></span>
+<span class="n">myMean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="n">mySD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">Normal</span><span class="p">(</span><span class="n">myMean</span><span class="p">,</span><span class="w"> </span><span class="n">mySD</span><span class="p">),</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Shifted Normal Distribution&quot;</span><span class="p">);</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">));</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Shifted Normal Distribution&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">lines!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">fig</span>
+<span class="n">lines!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"></span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1228,17 +1227,17 @@ f(x)=\frac{1}{σ \sqrt{2 π}} e^{-\frac{1}{2}\left(\frac{x-μ}{σ}\right)^{2}}
 <h2>Random numbers with a normal distribution<a class="headerlink" href="#random-numbers-with-a-normal-distribution" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">numData</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">Normal</span><span class="p">(</span><span class="n">myMean</span><span class="p">,</span> <span class="n">mySD</span><span class="p">),</span> <span class="n">numData</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">numData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">500</span><span class="w"></span>
+<span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">Normal</span><span class="p">(</span><span class="n">myMean</span><span class="p">,</span><span class="w"> </span><span class="n">mySD</span><span class="p">),</span><span class="w"> </span><span class="n">numData</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">));</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Normally distributed data&quot;</span><span class="p">);</span>
-<span class="n">scatter!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="w"> </span><span class="mi">600</span><span class="p">));</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Normally distributed data&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">scatter!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Histogram of normally distributed data&quot;</span><span class="p">);</span>
-<span class="n">hist!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span>
-<span class="n">fig</span>
+<span class="n">ax2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Histogram of normally distributed data&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">strokewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">strokecolor</span><span class="o">=</span><span class="ss">:black</span><span class="p">)</span><span class="w"></span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1259,30 +1258,30 @@ f(x, a, b)=\frac{Γ(a+b) x^{a-1}(1-x)^{b-1}}{Γ(a) Γ(b)}
 <p>where <span class="math notranslate nohighlight">\(0≤ x ≤ 1\)</span> and <span class="math notranslate nohighlight">\(a&gt;0\)</span>, <span class="math notranslate nohighlight">\(b&gt;0\)</span>, <span class="math notranslate nohighlight">\(Γ\)</span> is the Gamma function, and <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> decide the shape of Beta PDF.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">x</span> <span class="o">=</span> <span class="kt">LinRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">));</span><span class="w"></span>
 
-<span class="n">αs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
-<span class="n">βs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="ss">:red</span><span class="p">,</span> <span class="ss">:blue</span><span class="p">,</span> <span class="ss">:green</span><span class="p">,</span> <span class="ss">:orange</span><span class="p">];</span>
+<span class="n">αs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
+<span class="n">βs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
+<span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="ss">:red</span><span class="p">,</span><span class="w"> </span><span class="ss">:blue</span><span class="p">,</span><span class="w"> </span><span class="ss">:green</span><span class="p">,</span><span class="w"> </span><span class="ss">:orange</span><span class="p">];</span><span class="w"></span>
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;PDF of Beta Distribution&quot;</span><span class="p">)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;CDF of Beta Distribution&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PDF of Beta Distribution&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">ax2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;CDF of Beta Distribution&quot;</span><span class="p">)</span><span class="w"></span>
 
-<span class="k">for</span> <span class="p">(</span><span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">cl</span><span class="p">)</span> <span class="o">∈</span> <span class="n">zip</span><span class="p">(</span><span class="n">αs</span><span class="p">,</span> <span class="n">βs</span><span class="p">,</span> <span class="n">colors</span><span class="p">)</span>
-    <span class="n">d_beta</span> <span class="o">=</span> <span class="n">Beta</span><span class="p">(</span><span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">);</span>
-    <span class="n">pdf_beta</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_beta</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">pdf_beta</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">cl</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&quot;α = </span><span class="si">$α</span><span class="s">, β = </span><span class="si">$β</span><span class="s">&quot;</span><span class="p">)</span>
-    <span class="n">axislegend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="ss">:ct</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">α</span><span class="p">,</span><span class="w"> </span><span class="n">β</span><span class="p">,</span><span class="w"> </span><span class="n">cl</span><span class="p">)</span><span class="w"> </span><span class="o">∈</span><span class="w"> </span><span class="n">zip</span><span class="p">(</span><span class="n">αs</span><span class="p">,</span><span class="w"> </span><span class="n">βs</span><span class="p">,</span><span class="w"> </span><span class="n">colors</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">d_beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Beta</span><span class="p">(</span><span class="n">α</span><span class="p">,</span><span class="w"> </span><span class="n">β</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">pdf_beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pdf</span><span class="o">.</span><span class="p">(</span><span class="n">d_beta</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">pdf_beta</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cl</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;α = </span><span class="si">$α</span><span class="s">, β = </span><span class="si">$β</span><span class="s">&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">axislegend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:ct</span><span class="p">,</span><span class="w"> </span><span class="n">fontsize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"></span>
 
-    <span class="n">cdf_beta</span> <span class="o">=</span> <span class="n">cdf</span><span class="p">(</span><span class="n">d_beta</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">cdf_beta</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">cl</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&quot;α = </span><span class="si">$α</span><span class="s">, β = </span><span class="si">$β</span><span class="s">&quot;</span><span class="p">)</span>
-    <span class="n">axislegend</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="ss">:lt</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
-<span class="k">end</span>
+<span class="w">    </span><span class="n">cdf_beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cdf</span><span class="p">(</span><span class="n">d_beta</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">cdf_beta</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cl</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;α = </span><span class="si">$α</span><span class="s">, β = </span><span class="si">$β</span><span class="s">&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">axislegend</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:lt</span><span class="p">,</span><span class="w"> </span><span class="n">fontsize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 
-<span class="n">fig</span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1348,7 +1347,7 @@ f(x, a, b) ∝ x^{a-1}(1-x)^{b-1}
     
       By ivaquero<br/>
     
-        &copy; Copyright 2021.<br/>
+        &copy; Copyright 2022.<br/>
   </p>
 </footer>
 </main>

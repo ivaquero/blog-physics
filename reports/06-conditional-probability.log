@@ -21,7 +21,7 @@ using Combinatorics
 using Distributions, Random
 ------------------
 
-Failed to precompile Distributions [31c24e10-a181-5473-b8eb-7969acd0382f] to /Users/integzz/.julia/compiled/v1.7/Distributions/jl_OSGUaA.
+Failed to precompile Distributions [31c24e10-a181-5473-b8eb-7969acd0382f] to /Users/integzz/.julia/compiled/v1.7/Distributions/jl_kQtBJ1.
 
 Stacktrace:
  [1] error(s::String)
@@ -40,5 +40,5 @@ Stacktrace:
    @ ./boot.jl:373 [inlined]
  [8] include_string(mapexpr::typeof(REPL.softscope), mod::Module, code::String, filename::String)
    @ Base ./loading.jl:1196
-LoadError: Failed to precompile Distributions [31c24e10-a181-5473-b8eb-7969acd0382f] to /Users/integzz/.julia/compiled/v1.7/Distributions/jl_OSGUaA.
+LoadError: Failed to precompile Distributions [31c24e10-a181-5473-b8eb-7969acd0382f] to /Users/integzz/.julia/compiled/v1.7/Distributions/jl_kQtBJ1.
 

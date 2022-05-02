@@ -37,21 +37,23 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://ivaquero.github.io/excss-physics/probability/03-statistics.html" />
+    <link rel="canonical" href="https://ivaquero.github.io/blog-physics/probability/03-statistics.html" />
     <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -202,7 +204,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ivaquero/excss-physics/master?urlpath=lab/tree/probability/03-statistics.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ivaquero/blog-physics/master?urlpath=lab/tree/probability/03-statistics.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -331,21 +333,21 @@
 <h1>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">Distributions</span><span class="p">,</span> <span class="n">StatsBase</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Distributions</span><span class="p">,</span><span class="w"> </span><span class="n">StatsBase</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">Random</span><span class="p">,</span> <span class="n">Statistics</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Random</span><span class="p">,</span><span class="w"> </span><span class="n">Statistics</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">CairoMakie</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">CairoMakie</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -391,14 +393,14 @@
 <p>Or we can draw a frequency histogram, which simply converts the information of table into a graph.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">rollings</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">rollings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Frequency Histogram of 1000 Times of Rolling a Dice&quot;</span><span class="p">);</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">));</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Frequency Histogram of 1000 Times of Rolling a Dice&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rollings</span><span class="p">;</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">strokewidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">strokecolor</span> <span class="o">=</span> <span class="ss">:black</span><span class="p">);</span>
-<span class="n">fig</span>
+<span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">rollings</span><span class="p">;</span><span class="w"> </span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="n">strokewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">strokecolor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:black</span><span class="p">);</span><span class="w"></span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -409,15 +411,15 @@
 <p>Next we try generating an array from a standard normal distribution <span class="math notranslate nohighlight">\(x∼ N(0, 1)\)</span>, then plot the histogram.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">));</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
 
-<span class="n">hist</span> <span class="o">=</span>
-    <span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">;</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">normalization</span> <span class="o">=</span> <span class="ss">:pdf</span><span class="p">,</span> <span class="n">strokewidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">strokecolor</span> <span class="o">=</span> <span class="ss">:black</span><span class="p">);</span>
-<span class="n">fig</span>
+<span class="n">hist</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">normalization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:pdf</span><span class="p">,</span><span class="w"> </span><span class="n">strokewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">strokecolor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:black</span><span class="p">);</span><span class="w"></span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -427,11 +429,11 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">h_counts</span><span class="p">(</span><span class="n">pic</span><span class="p">)</span>
-    <span class="n">vals</span> <span class="o">=</span> <span class="n">pic</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">to_value</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">hcat</span><span class="p">(</span><span class="n">vals</span><span class="o">...</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">transpose</span>
-    <span class="k">return</span> <span class="n">m</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="k">end</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">h_counts</span><span class="p">(</span><span class="n">pic</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">vals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pic</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">to_value</span><span class="w"></span>
+<span class="w">    </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hcat</span><span class="p">(</span><span class="n">vals</span><span class="o">...</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">transpose</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">m</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -444,22 +446,19 @@
 <p>The first charts below shows the same information as histogram, but with line plots rather than bars. But the second one is called *Empirical cumulative distribution**, it is empirical because it is not theoretically plotted, i.e. using a **cumulative distribution function (CDF)**.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">hst_counts</span> <span class="o">=</span> <span class="n">h_counts</span><span class="p">(</span><span class="n">hist</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">hst_counts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h_counts</span><span class="p">(</span><span class="n">hist</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">));</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span>
-<span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="mi">50</span><span class="p">,</span> <span class="n">hst_counts</span><span class="p">);</span>
-<span class="n">xlims!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">));</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">));</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">hst_counts</span><span class="p">);</span><span class="w"></span>
+<span class="n">xlims!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">));</span><span class="w"></span>
 
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span>
-<span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="mi">50</span><span class="p">,</span> <span class="n">cumsum</span><span class="p">(</span><span class="n">hst_counts</span><span class="p">));</span>
-<span class="n">xlims!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">));</span>
-<span class="n">fig</span>
+<span class="n">ax2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="n">lines!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">cumsum</span><span class="p">(</span><span class="n">hst_counts</span><span class="p">));</span><span class="w"></span>
+<span class="n">xlims!</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">));</span><span class="w"></span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/03-statistics_13_0.png" src="../_images/03-statistics_13_0.png" />
 </div>
 </div>
 </div>
@@ -519,7 +518,7 @@ g = \bigg(∏_{i=1}^nx_i\bigg)^{1/n}
 </table>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Float64</span><span class="p">;</span> <span class="n">d</span><span class="o">::</span><span class="kt">Int64</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">round</span><span class="p">(</span><span class="mi">100</span><span class="n">x</span><span class="p">;</span> <span class="n">digits</span> <span class="o">=</span> <span class="n">d</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">percent</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Float64</span><span class="p">;</span><span class="w"> </span><span class="n">d</span><span class="o">::</span><span class="kt">Int64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="mi">100</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -527,8 +526,8 @@ g = \bigg(∏_{i=1}^nx_i\bigg)^{1/n}
 <p>The arithmetic mean of return is <span class="math notranslate nohighlight">\(4.45\%\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">portfolio_return</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.36</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.48</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.31</span><span class="p">]</span>
-<span class="n">portfolio_return</span> <span class="o">|&gt;</span> <span class="n">mean</span> <span class="o">|&gt;</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">percent</span><span class="p">(</span><span class="n">x</span><span class="p">;</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">portfolio_return</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.36</span><span class="p">,</span><span class="w"> </span><span class="mf">0.23</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.48</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span><span class="w"> </span><span class="mf">0.31</span><span class="p">]</span><span class="w"></span>
+<span class="n">portfolio_return</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">(</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -541,7 +540,7 @@ g = \bigg(∏_{i=1}^nx_i\bigg)^{1/n}
 <p>However the geometric mean of return is <span class="math notranslate nohighlight">\(-1.42\%\)</span>. Geometric mean is more accurate measurement when considering the compound effect, i.e. the data are related to each other by a growth rate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(((</span><span class="n">portfolio_return</span> <span class="o">.+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">geomean</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">percent</span><span class="p">(</span><span class="n">x</span><span class="p">;</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(((</span><span class="n">portfolio_return</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">geomean</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">percent</span><span class="p">(</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -557,10 +556,10 @@ g = \bigg(∏_{i=1}^nx_i\bigg)^{1/n}
 <p>The first measurement of variability is the <strong>range</strong> measuring distance from lowest to highest. We’ll generate an array of standard normal distribution for demonstration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
-<span class="n">rangeLS</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="o">...</span><span class="p">)</span> <span class="o">-</span> <span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="o">...</span><span class="p">);</span>
-<span class="n">rangeLS</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span><span class="w"></span>
+<span class="n">rangeLS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="o">...</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="o">...</span><span class="p">);</span><span class="w"></span>
+<span class="n">rangeLS</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -573,8 +572,8 @@ g = \bigg(∏_{i=1}^nx_i\bigg)^{1/n}
 <p><strong>Percentile</strong> is also a common statistic concept, which could be best explained by an example. For instance, the GRE test result shows percentile besides your absolute score, say you have a percentile of <span class="math notranslate nohighlight">\(96\%\)</span>, it means your score is higher than <span class="math notranslate nohighlight">\(96\%\)</span> of candidates. The special percentile of <span class="math notranslate nohighlight">\(75\%\)</span> and <span class="math notranslate nohighlight">\(25\%\)</span> are sometimes called the <em>third quartile</em> and <em>first quartile</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">q75</span><span class="p">,</span> <span class="n">q25</span> <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">]);</span>
-<span class="n">q75</span> <span class="o">-</span> <span class="n">q25</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">q75</span><span class="p">,</span><span class="w"> </span><span class="n">q25</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">0.75</span><span class="p">,</span><span class="w"> </span><span class="mf">0.25</span><span class="p">]);</span><span class="w"></span>
+<span class="n">q75</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">q25</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -595,12 +594,12 @@ s^2 = \frac{∑(x_i - \bar{x})^2}{n-1}
 <p>To illustrate the idea, let’s pretend there are only <span class="math notranslate nohighlight">\(N = 1000\)</span> people on earth, we can generate an array to represent the population height, only for demonstrative purpose. We generate a population by <span class="math notranslate nohighlight">\(X∼ N(170, 10)\)</span>, then calculate the population variance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">d_normal</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="mi">170</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">d_normal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Normal</span><span class="p">(</span><span class="mi">170</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">population_height</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d_normal</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
-<span class="n">population_height</span> <span class="o">|&gt;</span> <span class="n">mean</span> <span class="o">|&gt;</span> <span class="n">println</span>
-<span class="n">population_height</span> <span class="o">|&gt;</span> <span class="n">var</span> <span class="o">|&gt;</span> <span class="n">println</span>
+<span class="n">population_height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">d_normal</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
+<span class="n">population_height</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
+<span class="n">population_height</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -614,12 +613,12 @@ s^2 = \frac{∑(x_i - \bar{x})^2}{n-1}
 <p>Now suppose we know nothing about the population, but we can get a sample of 100 persons.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">sample_height</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">population_height</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">sample_height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">population_height</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">sample_height</span> <span class="o">|&gt;</span> <span class="n">mean</span> <span class="o">|&gt;</span> <span class="n">println</span>
-<span class="n">sample_height</span> <span class="o">|&gt;</span> <span class="n">var</span> <span class="o">|&gt;</span> <span class="n">println</span>
-<span class="n">sample_height</span> <span class="o">|&gt;</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">varm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mean</span><span class="p">(</span><span class="n">sample_height</span><span class="p">))</span> <span class="o">|&gt;</span> <span class="n">println</span>
+<span class="n">sample_height</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
+<span class="n">sample_height</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
+<span class="n">sample_height</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">varm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">sample_height</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">println</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -635,25 +634,25 @@ s^2 = \frac{∑(x_i - \bar{x})^2}{n-1}
 <p>What we are doing next: generate <span class="math notranslate nohighlight">\(10000\)</span> samples, calculate the sample variances, plot histogram. The vertical line is the mean of sampling distribution of variance estimates. We set standard deviation of <span class="math notranslate nohighlight">\(σ = 10\)</span>, the theoretical variance <span class="math notranslate nohighlight">\(σ^2=100\)</span>, therefore we see the point estimator is doing a fair well job.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sample_height_array</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
-<span class="n">population_height_mean</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">population_height</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sample_height_array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span><span class="w"> </span><span class="mi">10000</span><span class="p">)</span><span class="w"></span>
+<span class="n">population_height_mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">population_height</span><span class="p">);</span><span class="w"></span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10000</span>
-    <span class="n">sample_height</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">population_height</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-    <span class="n">sample_height_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">varm</span><span class="p">(</span><span class="n">sample_height</span><span class="p">,</span> <span class="n">population_height_mean</span><span class="p">)</span>
-<span class="k">end</span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">∈</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">10000</span><span class="w"></span>
+<span class="w">    </span><span class="n">sample_height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">population_height</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">sample_height_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">varm</span><span class="p">(</span><span class="n">sample_height</span><span class="p">,</span><span class="w"> </span><span class="n">population_height_mean</span><span class="p">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Sampling Distribution of Variance Estimates&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">));</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Sampling Distribution of Variance Estimates&quot;</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">hist2</span> <span class="o">=</span> <span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">sample_height_array</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">strokewidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">strokecolor</span> <span class="o">=</span> <span class="ss">:black</span><span class="p">)</span>
-<span class="n">vlines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">mean</span><span class="p">(</span><span class="n">sample_height_array</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="ss">:red</span><span class="p">)</span>
-<span class="n">text!</span><span class="p">(</span>
-    <span class="n">ax</span><span class="p">,</span>
-    <span class="s">&quot;μ_σ = </span><span class="si">$</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">sample_height_array</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">round</span><span class="p">)</span><span class="s">&quot;</span><span class="p">,</span>
-    <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">sample_height_array</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="n">maximum</span><span class="p">(</span><span class="n">h_counts</span><span class="p">(</span><span class="n">hist2</span><span class="p">))</span> <span class="o">-</span> <span class="mi">50</span><span class="p">),</span>
-<span class="p">)</span>
-<span class="n">fig</span>
+<span class="n">hist2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hist!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">sample_height_array</span><span class="p">,</span><span class="w"> </span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">strokewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">strokecolor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:black</span><span class="p">)</span><span class="w"></span>
+<span class="n">vlines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">sample_height_array</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:red</span><span class="p">)</span><span class="w"></span>
+<span class="n">text!</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">ax</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;μ_σ = </span><span class="si">$</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">sample_height_array</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">round</span><span class="p">)</span><span class="s">&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">sample_height_array</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">maximum</span><span class="p">(</span><span class="n">h_counts</span><span class="p">(</span><span class="n">hist2</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">50</span><span class="p">),</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -671,7 +670,7 @@ s = \sqrt{s^2}
 <p>Similar to variance function in NumPy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">stdm</span><span class="p">(</span><span class="n">sample_height_array</span><span class="p">,</span> <span class="n">population_height_mean</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">stdm</span><span class="p">(</span><span class="n">sample_height_array</span><span class="p">,</span><span class="w"> </span><span class="n">population_height_mean</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -696,30 +695,30 @@ z_i = \frac{x_i-\bar{x}}{s}
 <p>Here is the example of calculating <span class="math notranslate nohighlight">\(z\)</span>-score for an randomly generated array. So you can see for a standard normal distribution, it would be fairly hard to stray <span class="math notranslate nohighlight">\(2\)</span> standard deviations away.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
-<span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">.-</span> <span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">./</span> <span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">.-</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="o">./</span><span class="w"> </span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">hist!</span><span class="p">(</span>
-    <span class="n">ax</span><span class="p">,</span>
-    <span class="n">x</span><span class="p">,</span>
-    <span class="n">strokewidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
-    <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="ss">:orange</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">),</span>
-    <span class="n">strokecolor</span> <span class="o">=</span> <span class="ss">:black</span><span class="p">,</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s">&quot;origenal&quot;</span><span class="p">,</span>
-<span class="p">);</span>
-<span class="n">hist!</span><span class="p">(</span>
-    <span class="n">ax</span><span class="p">,</span>
-    <span class="n">z</span><span class="p">,</span>
-    <span class="n">strokewidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
-    <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;#2E86C3&quot;</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span>
-    <span class="n">strokecolor</span> <span class="o">=</span> <span class="ss">:black</span><span class="p">,</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s">&quot;standardized&quot;</span><span class="p">,</span>
-<span class="p">);</span>
-<span class="n">axislegend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="ss">:rt</span><span class="p">);</span>
-<span class="n">fig</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">));</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="w"></span>
+<span class="n">hist!</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">ax</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">x</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">strokewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="ss">:orange</span><span class="p">,</span><span class="w"> </span><span class="mf">0.4</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">strokecolor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:black</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;origenal&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+<span class="n">hist!</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">ax</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">z</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">strokewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;#2E86C3&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.6</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">strokecolor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:black</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;standardized&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+<span class="n">axislegend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:rt</span><span class="p">);</span><span class="w"></span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -736,8 +735,8 @@ p ≥ 1-\frac{1}{z^2}
 <p>For instance, the average height of people in Helsinki is <span class="math notranslate nohighlight">\(174cm\)</span>, with a standard deviation of of <span class="math notranslate nohighlight">\(4cm\)</span>, so the question is how many people (percentage) are within <span class="math notranslate nohighlight">\(166cm\)</span> and <span class="math notranslate nohighlight">\(182cm\)</span>? Note that this range is symmetrically <span class="math notranslate nohighlight">\(2\)</span> standard derivations away from its mean. Thus according to Chebyshev, we know that</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">zₗ</span> <span class="o">=</span> <span class="p">(</span><span class="mi">166</span> <span class="o">-</span> <span class="mi">174</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span> <span class="c"># lower z-score</span>
-<span class="n">zᵤ</span> <span class="o">=</span> <span class="p">(</span><span class="mi">182</span> <span class="o">-</span> <span class="mi">174</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span> <span class="c"># upper z-score</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">zₗ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">166</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">174</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="c"># lower z-score</span><span class="w"></span>
+<span class="n">zᵤ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">182</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">174</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="c"># upper z-score</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -750,8 +749,8 @@ p ≥ 1-\frac{1}{z^2}
 <p>Because it is a symmetric range, <span class="math notranslate nohighlight">\(z\)</span>-score on each sides are equal, we can calculate the probability as below and print the conclusion.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">zₗ</span><span class="o">^</span><span class="mi">2</span>
-<span class="n">print</span><span class="p">(</span><span class="s">&quot;At least </span><span class="si">$</span><span class="p">(</span><span class="mi">100</span><span class="n">p</span><span class="p">)</span><span class="si">% o</span><span class="s">f people are within 168cm and 182cm in Helsinki.&quot;</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">zₗ</span><span class="o">^</span><span class="mi">2</span><span class="w"></span>
+<span class="n">print</span><span class="p">(</span><span class="s">&quot;At least </span><span class="si">$</span><span class="p">(</span><span class="mi">100</span><span class="n">p</span><span class="p">)</span><span class="si">% o</span><span class="s">f people are within 168cm and 182cm in Helsinki.&quot;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -765,34 +764,34 @@ p ≥ 1-\frac{1}{z^2}
 <p>Because <span class="math notranslate nohighlight">\(z\)</span>-score means how many standard deviation away from the mean, from the graph we could conclude that no matter what types of distributions we are investigating, it is guaranteed that <span class="math notranslate nohighlight">\(± 2.5\)</span> standard deviation range would cover at least <span class="math notranslate nohighlight">\(84\%\)</span> of data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">chebyshev</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">z</span><span class="o">^</span><span class="mi">2</span><span class="p">;</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">chebyshev</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">z</span><span class="o">^</span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">zscores</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mf">0.5</span><span class="o">:</span><span class="mi">20</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">zscores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mf">0.5</span><span class="o">:</span><span class="mi">20</span><span class="w"></span>
 
-<span class="n">chebyshev_array</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span> <span class="n">length</span><span class="p">(</span><span class="n">zscores</span><span class="p">))</span>
+<span class="n">chebyshev_array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">zscores</span><span class="p">))</span><span class="w"></span>
 
-<span class="k">for</span> <span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="o">∈</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">zscores</span><span class="p">)</span>
-    <span class="n">chebyshev_array</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">chebyshev</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
-<span class="k">end</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">ind</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="o">∈</span><span class="w"> </span><span class="n">enumerate</span><span class="p">(</span><span class="n">zscores</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">chebyshev_array</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chebyshev</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">));</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">Axis</span><span class="p">(</span>
-    <span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Chebyshev&#39;s Theorem&quot;</span><span class="p">,</span>
-    <span class="n">xlabel</span> <span class="o">=</span> <span class="s">&quot;z-score&quot;</span><span class="p">,</span>
-    <span class="n">ylabel</span> <span class="o">=</span> <span class="s">&quot;Probability&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">fig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Figure</span><span class="p">(</span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">));</span><span class="w"></span>
+<span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Axis</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Chebyshev&#39;s Theorem&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">xlabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;z-score&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">ylabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Probability&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">zscores</span><span class="p">,</span> <span class="n">chebyshev_array</span><span class="p">)</span>
-<span class="n">scatter!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">],</span> <span class="p">[</span><span class="n">chebyshev</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)],</span> <span class="n">color</span> <span class="o">=</span> <span class="ss">:red</span><span class="p">)</span>
-<span class="n">text!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s">&quot;(2.5, </span><span class="si">$</span><span class="p">(</span><span class="n">chebyshev</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="s">%)&quot;</span><span class="p">,</span> <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">chebyshev</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">))</span>
+<span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="n">zscores</span><span class="p">,</span><span class="w"> </span><span class="n">chebyshev_array</span><span class="p">)</span><span class="w"></span>
+<span class="n">scatter!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">2.5</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="n">chebyshev</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)],</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:red</span><span class="p">)</span><span class="w"></span>
+<span class="n">text!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;(2.5, </span><span class="si">$</span><span class="p">(</span><span class="n">chebyshev</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="s">%)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span><span class="w"> </span><span class="n">chebyshev</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.1</span><span class="p">))</span><span class="w"></span>
 
-<span class="n">fig</span>
+<span class="n">fig</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -820,10 +819,10 @@ s_{xy} \frac{∑(x_i-\bar{x})(y_i-\bar{y})}{n-1}
 <p>Generate two random arrays, then evaluate a covariance matrix. The values on the diagonal presents the variance, the off-diagonal presents the covariance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">300</span><span class="p">);</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">300</span><span class="p">);</span>
-<span class="n">cov</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randn</span><span class="p">(</span><span class="mi">300</span><span class="p">);</span><span class="w"></span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">300</span><span class="p">);</span><span class="w"></span>
+<span class="n">cov</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -897,7 +896,7 @@ r_{xy}=\frac{s_{xy}}{s_xs_y}
     
       By ivaquero<br/>
     
-        &copy; Copyright 2021.<br/>
+        &copy; Copyright 2022.<br/>
   </p>
 </footer>
 </main>
