@@ -20,7 +20,7 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 using Distributions, StatsBase
 ------------------
 
-Failed to precompile Distributions [31c24e10-a181-5473-b8eb-7969acd0382f] to /Users/integzz/.julia/compiled/v1.7/Distributions/jl_tTKkYk.
+Failed to precompile Distributions [31c24e10-a181-5473-b8eb-7969acd0382f] to /Users/integzz/.julia/compiled/v1.7/Distributions/jl_0y85kO.
 
 Stacktrace:
  [1] error(s::String)
@@ -39,5 +39,5 @@ Stacktrace:
    @ ./boot.jl:373 [inlined]
  [8] include_string(mapexpr::typeof(REPL.softscope), mod::Module, code::String, filename::String)
    @ Base ./loading.jl:1196
-LoadError: Failed to precompile Distributions [31c24e10-a181-5473-b8eb-7969acd0382f] to /Users/integzz/.julia/compiled/v1.7/Distributions/jl_tTKkYk.
+LoadError: Failed to precompile Distributions [31c24e10-a181-5473-b8eb-7969acd0382f] to /Users/integzz/.julia/compiled/v1.7/Distributions/jl_0y85kO.
 
