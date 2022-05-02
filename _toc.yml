@@ -4,9 +4,6 @@
 format: jb-book
 root: intro
 parts:
-  - caption: Linear Algebra
-    chapters:
-      - file: linalg/numerical_solution
   - caption: System Dynamics
     chapters:
       - file: dynamics/numerical_solution
@@ -24,6 +21,3 @@ parts:
       # - file: probability/10-markov-chains
       # - file: probability/11-poisson-processes
       # - file: probability/12-survival-analysis
-  - caption: Basics
-    chapters:
-      - file: basics/dataframes
