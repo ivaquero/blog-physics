@@ -17,10 +17,12 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-using Distributions, StatsBase
+using CairoMakie
+using ModelingToolkit
+using DifferentialEquations: solve
 ------------------
 
-Failed to precompile Distributions [31c24e10-a181-5473-b8eb-7969acd0382f] to /Users/integzz/.julia/compiled/v1.7/Distributions/jl_j5ewCL.
+Failed to precompile CairoMakie [13f3f980-e62b-5c42-98c6-ff1f3baf88f0] to /Users/integzz/.julia/compiled/v1.7/CairoMakie/jl_TLUZAh.
 
 Stacktrace:
  [1] error(s::String)
@@ -39,5 +41,5 @@ Stacktrace:
    @ ./boot.jl:373 [inlined]
  [8] include_string(mapexpr::typeof(REPL.softscope), mod::Module, code::String, filename::String)
    @ Base ./loading.jl:1196
-LoadError: Failed to precompile Distributions [31c24e10-a181-5473-b8eb-7969acd0382f] to /Users/integzz/.julia/compiled/v1.7/Distributions/jl_j5ewCL.
+LoadError: Failed to precompile CairoMakie [13f3f980-e62b-5c42-98c6-ff1f3baf88f0] to /Users/integzz/.julia/compiled/v1.7/CairoMakie/jl_TLUZAh.
 

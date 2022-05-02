@@ -20,7 +20,7 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 using StatsBase, Random
 ------------------
 
-Failed to precompile StatsBase [2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91] to /Users/integzz/.julia/compiled/v1.7/StatsBase/jl_Cmx77n.
+Failed to precompile StatsBase [2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91] to /Users/integzz/.julia/compiled/v1.7/StatsBase/jl_vT746G.
 
 Stacktrace:
  [1] error(s::String)
@@ -39,5 +39,5 @@ Stacktrace:
    @ ./boot.jl:373 [inlined]
  [8] include_string(mapexpr::typeof(REPL.softscope), mod::Module, code::String, filename::String)
    @ Base ./loading.jl:1196
-LoadError: Failed to precompile StatsBase [2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91] to /Users/integzz/.julia/compiled/v1.7/StatsBase/jl_Cmx77n.
+LoadError: Failed to precompile StatsBase [2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91] to /Users/integzz/.julia/compiled/v1.7/StatsBase/jl_vT746G.
 
