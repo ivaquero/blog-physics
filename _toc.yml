@@ -6,7 +6,7 @@ root: intro
 parts:
   - caption: System Dynamics
     chapters:
-      - file: dynamics/numerical_solution
+      - file: dynamics/numerical-solution
   - caption: Probablity
     chapters:
       - file: probability/01-counting
