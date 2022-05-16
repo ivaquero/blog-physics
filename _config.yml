@@ -61,10 +61,10 @@ launch_buttons:
   tojupyter_images_markdown: true
   tojupyter_target_html: true
   tojupyter_default_lang: julia
-  tojupyter_lang_synonyms: ['julia-1.6']
+  tojupyter_lang_synonyms: ['julia-1.7']
   tojupyter_kernels:
     julia:
       kernelspec:
         display_name: Julia
         language: julia
-        name: julia-1.6
+        name: julia-1.7
