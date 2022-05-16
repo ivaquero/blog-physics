@@ -4,7 +4,7 @@
 title: A Starter of Physics
 author: ivaquero
 copyright: '2022'
-logo: logo.png
+logo: doge.png
 exclude_patterns: [_build, Thumbs.db, .DS_Store, '**.ipynb_checkpoints']
 only_build_toc_files: true
 
@@ -40,7 +40,7 @@ bibtex_bibfiles:
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
-  favicon: logo.png
+  favicon: doge.png
   baseurl: 'https://ivaquero.github.io/blog-physics/'
   extra_footer: '' # Will be displayed underneath the footer.
   home_page_in_navbar: true # Whether to include your home page in the left Navigation Bar
